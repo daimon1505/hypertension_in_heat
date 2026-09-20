@@ -1,0 +1,147 @@
+{
+  "id": "patient3",
+  "synthetic": true,
+  "sample_persona": true,
+  "review_status": "SAMPLE persona drafted by Claude Code — team to confirm; clinical review pending",
+  "display_name": "Aisha Khan",
+  "age": 34,
+  "sex": "Female",
+  "conditions": [
+    "Hypertension (newly diagnosed)"
+  ],
+  "medications": [
+    {
+      "name": "Amlodipine",
+      "dose": "5 mg by mouth daily",
+      "class_id": "ccb_amlodipine",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2026-05-19"
+    }
+  ],
+  "heat_profile": {
+    "has_ac": true,
+    "lives_alone": false,
+    "mobility": "Independent"
+  },
+  "locations": [
+    {
+      "id": "home",
+      "label": "Home",
+      "type": "home",
+      "nta_id": "MN0903",
+      "address": "Hamilton Heights apartment (fictional)"
+    },
+    {
+      "id": "work",
+      "label": "Work",
+      "type": "work",
+      "nta_id": "BX0402",
+      "address": "Highbridge office (fictional)"
+    },
+    {
+      "id": "family",
+      "label": "Family",
+      "type": "family",
+      "nta_id": "MN0702",
+      "address": "Parents' apartment (fictional)"
+    }
+  ],
+  "current_location_id": "home",
+  "consent": {
+    "share_red_alerts_with_care_team": false,
+    "date": "2026-05-19"
+  },
+  "chart": {
+    "demographics": {
+      "dob": "1992-01-09 (synthetic)",
+      "mrn": "SYN-000103",
+      "address": "601 W 141st St, Apt 6F, New York, NY 10031 (fictional)",
+      "phone": "718-555-0103",
+      "language": "English, Urdu",
+      "emergency_contact": {
+        "name": "Imran Khan",
+        "relationship": "Spouse",
+        "phone": "718-555-0113"
+      }
+    },
+    "healthcare_proxy": {
+      "name": "Imran Khan",
+      "relationship": "Spouse",
+      "phone": "718-555-0113"
+    },
+    "pharmacy": {
+      "name": "Hamilton Heights Pharmacy (fictional)",
+      "address": "1400 Amsterdam Ave, New York, NY (fictional)",
+      "phone": "212-555-0123"
+    },
+    "visit_notes": [
+      {
+        "date": "2026-05-19",
+        "type": "Primary care — new diagnosis of hypertension",
+        "provider": "Dr. A. Rivera",
+        "subjective": "Readings at home have been running around 148/92 over the past month. No headaches, chest pain, or visual changes. Works in an air-conditioned office; commutes by bus. No family history discussed today.",
+        "objective": "BP 146/90 (repeat 144/88). HR 72. BMI 27.4. Exam otherwise normal.",
+        "assessment": "Stage 1 hypertension, newly diagnosed. No evidence of end-organ damage.",
+        "plan": "Start amlodipine 5 mg daily. Lifestyle advice: reduce salt, regular walking. Home BP log. Offered the heat-alert program: she joined but chose NOT to share red alerts automatically with the care team. Recheck in 3 months."
+      }
+    ],
+    "after_visit_summaries": [
+      {
+        "date": "2026-05-19",
+        "summary": "Your blood pressure is a little high, so we started amlodipine, one tablet a day. Keep a home blood pressure log and bring it next time. Amlodipine is not affected by hot weather, but heat can still make anyone unwell, so stay cool and drink water on hot days."
+      }
+    ],
+    "appointments": [
+      {
+        "date": "2026-11-18 16:00",
+        "provider": "Dr. A. Rivera (Primary care)",
+        "reason": "Blood pressure recheck and lab review"
+      }
+    ],
+    "other_conditions": [
+      "Allergic rhinitis"
+    ],
+    "labs": [
+      {
+        "date": "2026-05-19",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 140,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 4.1,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": ""
+          },
+          {
+            "name": "Creatinine",
+            "value": 0.82,
+            "unit": "mg/dL",
+            "ref_range": "0.50–1.10",
+            "flag": ""
+          },
+          {
+            "name": "eGFR",
+            "value": 92,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": ""
+          }
+        ]
+      }
+    ],
+    "imaging": []
+  },
+  "doctor_note": {
+    "date": "2026-05-19",
+    "from": "Dr. A. Rivera",
+    "text": "Your blood pressure is well controlled. Amlodipine is not affected by heat — just stay cool and keep drinking water."
+  }
+}

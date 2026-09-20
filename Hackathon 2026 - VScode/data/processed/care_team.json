@@ -1,0 +1,12 @@
+{
+  "synthetic": true,
+  "id": "care",
+  "display_name": "Care Team — Maple Street Clinic",
+  "subtitle": "Healthcare team (synthetic)",
+  "members": [
+    { "name": "Dr. A. Rivera", "role": "Primary care physician" },
+    { "name": "J. Chen, RN", "role": "Nurse care manager" },
+    { "name": "S. Okafor, PharmD", "role": "Clinical pharmacist" }
+  ],
+  "phone": "212-555-0100"
+}

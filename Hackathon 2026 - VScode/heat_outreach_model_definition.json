@@ -1,0 +1,633 @@
+{
+  "document_type": "model_definition_and_evidence_registry",
+  "model_id": "hypertension_heat_outreach",
+  "version": "0.1.0",
+  "prepared_on": "2026-09-19",
+  "implementation_status": "Specification only; no deployed model, connected data pipeline or trained AI model is evidenced by this document.",
+  "intended_use": {
+    "population": "Adults aged 18+ with hypertension in locations covered by the selected official NWS HeatRisk product.",
+    "unit": "One patient per local forecast date.",
+    "purpose": "Prioritize preventive outreach and identify support needs.",
+    "not_for": [
+      "Diagnosis",
+      "Medication or fluid-prescription changes",
+      "Individual illness probability",
+      "Autonomous clinical triage",
+      "Occupational heat clearance"
+    ],
+    "validation_status": "Evidence-informed factors; all points, caps, thresholds and matrix cells are provisional design choices, not clinically validated.",
+    "prediction_horizon": "Daily assessment. Optional next-three-local-calendar-days summary is a product planning choice, not a validated outcome horizon."
+  },
+  "datasets": [
+    {
+      "id": "D1",
+      "name": "Local heat forecasts",
+      "role": "Environmental exposure",
+      "source_refs": [
+        "E01",
+        "E02",
+        "E09"
+      ],
+      "schema": {
+        "location_id": "string",
+        "latitude": "number",
+        "longitude": "number",
+        "local_timezone": "IANA timezone string",
+        "forecast_date": "YYYY-MM-DD",
+        "forecast_issued_at": "ISO8601 with offset",
+        "retrieved_at": "ISO8601 with offset",
+        "heatrisk_level": "integer 0..4 or null",
+        "source_url": "string",
+        "source_product_version": "string or null",
+        "data_mode": "live | cached | synthetic",
+        "is_usable": "boolean; adapter verifies source, geography, date and source-specific freshness policy"
+      },
+      "integration": "Official HeatRisk ingestion must be verified separately from ordinary NWS forecast/alert endpoints. Store source geography, date, timestamp and product version. Do not infer HeatRisk from an alert label or raw temperature.",
+      "availability": "Relevant public source identified; no live connection established."
+    },
+    {
+      "id": "D2",
+      "name": "Patient health and living-condition profiles",
+      "role": "Individual susceptibility and ability to act",
+      "source": "Consented intake and authorized clinical records; synthetic records for demo. No real patient dataset supplied.",
+      "schema": {
+        "patient_id": {
+          "type": "string",
+          "meaning": "Pseudonymous ID; no name required."
+        },
+        "location_id": {
+          "type": "string",
+          "meaning": "Join to forecast geography; verify current expected location."
+        },
+        "age": {
+          "type": "integer|null",
+          "meaning": "Years; adult scope >=18."
+        },
+        "has_hypertension": {
+          "type": "boolean|null",
+          "meaning": "Eligibility, not a scored factor."
+        },
+        "has_heart_failure": {
+          "type": "boolean|null",
+          "meaning": "Known diagnosis."
+        },
+        "has_chronic_kidney_disease": {
+          "type": "boolean|null",
+          "meaning": "Known diagnosis."
+        },
+        "has_diabetes": {
+          "type": "boolean|null",
+          "meaning": "Known diagnosis."
+        },
+        "history_of_heat_illness": {
+          "type": "boolean|null",
+          "meaning": "Patient report or clinical history."
+        },
+        "medication_classes": {
+          "type": "array<string>|null",
+          "meaning": "Normalized current classes. Empty array means confirmed none, not unknown."
+        },
+        "medication_review_complete": {
+          "type": "boolean|null",
+          "meaning": "False/null or unmapped medications leaves medication score uncertain."
+        },
+        "has_reliable_home_cooling": {
+          "type": "boolean|null",
+          "meaning": "Working, affordable and usable cooling, with power available."
+        },
+        "can_access_cooling_location": {
+          "type": "boolean|null",
+          "meaning": "Confirmed opening hours, transport and accessibility."
+        },
+        "expected_heat_exposure": {
+          "type": "boolean|null",
+          "meaning": "Exposure during the forecast day; includes hot indoor work."
+        },
+        "has_reliable_cooling_breaks": {
+          "type": "boolean|null",
+          "meaning": "Usable cooling/rest breaks during exposure."
+        },
+        "has_strenuous_heat_exposure": {
+          "type": "boolean|null",
+          "meaning": "Strenuous activity in heat during the forecast day."
+        },
+        "has_reliable_checkin_support": {
+          "type": "boolean|null",
+          "meaning": "Someone available to check in/help."
+        },
+        "needs_assistance_for_heat_protection": {
+          "type": "boolean|null",
+          "meaning": "Assistance needed to reach cooling or follow the plan."
+        },
+        "has_prescribed_fluid_restriction": {
+          "type": "boolean|null",
+          "meaning": "Controls wording, not vulnerability points."
+        },
+        "current_symptoms": {
+          "type": "array<string>|null",
+          "meaning": "Empty means explicitly none; null means not assessed."
+        },
+        "symptoms_reported_at": {
+          "type": "ISO8601|null",
+          "meaning": "Timestamp with UTC offset."
+        },
+        "preferred_language": {
+          "type": "string",
+          "meaning": "Language code."
+        },
+        "profile_updated_at": {
+          "type": "ISO8601",
+          "meaning": "Timestamp with UTC offset."
+        },
+        "medications_verified_at": {
+          "type": "ISO8601|null",
+          "meaning": "Timestamp with UTC offset."
+        },
+        "cooling_access_verified_at": {
+          "type": "ISO8601|null",
+          "meaning": "Timestamp with UTC offset."
+        }
+      },
+      "join": "location_id plus forecast_date. Historical profiles must not leak future information into evaluations."
+    },
+    {
+      "id": "D3",
+      "name": "Cooling resource directory",
+      "role": "Supplementary action support, not a third scoring domain dataset",
+      "required_fields": [
+        "resource_id",
+        "name",
+        "latitude",
+        "longitude",
+        "opening_hours",
+        "timezone",
+        "accessibility",
+        "contact",
+        "source_url",
+        "last_verified_at"
+      ],
+      "availability": "Local source and city still to be selected. Do not invent open status or travel accessibility."
+    }
+  ],
+  "scoring": {
+    "rule_language": "Ordered declarative cases described below. Implement as deterministic code; this JSON is configuration/specification, not executable code.",
+    "unknown_semantics": "Evaluate all plausible completions of unknown inputs consistent with known facts. Return the min/max domain and total scores; never coerce null to false.",
+    "domains": [
+      {
+        "id": "clinical",
+        "max_points": 2,
+        "formula": "min(2, int(age>=65) + int(has_heart_failure) + int(has_chronic_kidney_disease) + int(has_diabetes) + int(history_of_heat_illness))",
+        "evidence_refs": [
+          "E04",
+          "E05",
+          "E06"
+        ],
+        "weight_status": "Provisional; cap limits domination by correlated diagnoses, but may hide differences in multimorbidity."
+      },
+      {
+        "id": "medication",
+        "max_points": 2,
+        "ordered_cases": [
+          {
+            "when": "Known DIURETIC and any of ACEI, ARB, ARNI",
+            "points": 2
+          },
+          {
+            "when": "At least one class in heat_relevant_classes",
+            "points": 1
+          },
+          {
+            "when": "Complete review and no class in heat_relevant_classes",
+            "points": 0
+          }
+        ],
+        "heat_relevant_classes": [
+          "DIURETIC",
+          "ACEI",
+          "ARB",
+          "ARNI",
+          "BETA_BLOCKER",
+          "CALCIUM_CHANNEL_BLOCKER",
+          "NITRATE",
+          "ANTICHOLINERGIC",
+          "ANTIPSYCHOTIC",
+          "TCA",
+          "SSRI",
+          "SNRI",
+          "LITHIUM",
+          "NSAID",
+          "STIMULANT"
+        ],
+        "mapping_status": "Initial non-exhaustive list for clinician/pharmacist review. Map active ingredients, including fixed-dose combination products. Unmapped medicines are unknown, not negative.",
+        "evidence_refs": [
+          "E03"
+        ],
+        "weight_status": "Provisional; no evidence of a calibrated 2:1 risk ratio. Incomplete review allows upper bound 2 even when a known medication establishes lower bound 1."
+      },
+      {
+        "id": "cooling",
+        "max_points": 2,
+        "ordered_cases": [
+          {
+            "when": "has_reliable_home_cooling == true",
+            "points": 0
+          },
+          {
+            "when": "home cooling == false AND alternative access == true",
+            "points": 1
+          },
+          {
+            "when": "home cooling == false AND alternative access == false",
+            "points": 2
+          }
+        ],
+        "evidence_refs": [
+          "E07"
+        ],
+        "weight_status": "Provisional. Lack of transport is captured in usable access, not added again."
+      },
+      {
+        "id": "exposure",
+        "max_points": 2,
+        "ordered_cases": [
+          {
+            "when": "has_strenuous_heat_exposure == true",
+            "points": 2
+          },
+          {
+            "when": "expected_heat_exposure == true AND has_reliable_cooling_breaks == false",
+            "points": 2
+          },
+          {
+            "when": "expected_heat_exposure == true AND has_reliable_cooling_breaks == true AND has_strenuous_heat_exposure == false",
+            "points": 1
+          },
+          {
+            "when": "expected_heat_exposure == false AND has_strenuous_heat_exposure == false",
+            "points": 0
+          }
+        ],
+        "evidence_refs": [
+          "E06"
+        ],
+        "weight_status": "Provisional. Contradictory answers require correction rather than silent scoring."
+      },
+      {
+        "id": "support",
+        "max_points": 2,
+        "formula": "int(has_reliable_checkin_support == false) + int(needs_assistance_for_heat_protection == true)",
+        "evidence_refs": [
+          "E07"
+        ],
+        "weight_status": "Provisional. Living alone alone is not a point; actual support is assessed."
+      }
+    ],
+    "aggregation": "Sum five domains; range 0..10. Do not convert to a percentage. Keep H=official HeatRisk separate.",
+    "bands": [
+      {
+        "id": "few",
+        "min": 0,
+        "max": 2
+      },
+      {
+        "id": "several",
+        "min": 3,
+        "max": 5
+      },
+      {
+        "id": "many",
+        "min": 6,
+        "max": 10
+      }
+    ],
+    "priority_matrix": {
+      "0": [
+        "routine",
+        "routine",
+        "routine"
+      ],
+      "1": [
+        "routine",
+        "targeted",
+        "targeted"
+      ],
+      "2": [
+        "targeted",
+        "targeted",
+        "priority"
+      ],
+      "3": [
+        "targeted",
+        "priority",
+        "priority"
+      ],
+      "4": [
+        "priority",
+        "priority",
+        "priority"
+      ]
+    },
+    "matrix_column_order": [
+      "few",
+      "several",
+      "many"
+    ],
+    "matrix_status": "Provisional outreach policy informed by E01 and E10, not an externally validated clinical classification.",
+    "excluded_from_score": [
+      "Hypertension is an eligibility criterion.",
+      "Blood pressure readings are clinician context; no invented heat-specific BP cutoffs.",
+      "Heat index, hot nights and heat duration are not additive points on top of official HeatRisk.",
+      "Fluid restrictions affect advice, not points."
+    ]
+  },
+  "processing": [
+    "1. Route reported symptoms before scoring or AI. Never wait for a weather feed to show urgent instructions.",
+    "2. Confirm adult hypertension scope, input types and contradictions. Out-of-scope records receive no score.",
+    "3. Verify forecast usability. If unavailable, set outreach_priority=null and assessment_status=forecast_unavailable; retain known vulnerability and general preparedness support.",
+    "4. Compute exact scores or bounded score intervals. List all missing fields and stale data flags.",
+    "5. Evaluate matrix over all possible scores. If one priority remains, return it with assessment_status=partial when inputs are missing. If multiple remain, return outreach_priority=null, possible_priorities and assessment_status=needs_information.",
+    "6. Select fixed action IDs and reason codes. Symptom pathways remain separate from preventive outreach priority.",
+    "7. Optionally generate explanations from these outputs and approved text. Validate output, otherwise render templates.",
+    "8. Recompute after forecast, medication, symptom, cooling or support changes. A three-day maximum summarizes only available dates; explicitly report missing days."
+  ],
+  "symptom_policy": {
+    "status": "Draft routing requirements needing clinician approval; not comprehensive triage.",
+    "evidence_refs": [
+      "E08"
+    ],
+    "emergency_signals": [
+      "confusion",
+      "seizure",
+      "loss_of_consciousness"
+    ],
+    "emergency_behavior": "Show a fixed emergency message: Call 911 now (US). Move to a cooler place and begin cooling while help arrives. Do not give fluids to an unconscious person. No AI generation required.",
+    "other_new_symptoms": [
+      "dizziness",
+      "weakness",
+      "headache",
+      "nausea",
+      "vomiting",
+      "fainting"
+    ],
+    "other_behavior": "Show a clinician-reviewed symptom assessment route and cooling advice; do not merely add points or imply a low score rules out illness. Include prompt-care guidance for vomiting or worsening symptoms.",
+    "unassessed_behavior": "Record symptoms_not_assessed; never claim asymptomatic. Preventive assessment may still be shown with this limitation.",
+    "clinical_release_gate": "Broader emergency complaints and local triage pathways must be reviewed before patient-facing deployment."
+  },
+  "actions": {
+    "routine": [
+      "MAINTAIN_HEAT_PLAN"
+    ],
+    "targeted": [
+      "CONFIRM_COOLING_PLAN",
+      "REDUCE_HEAT_EXPOSURE",
+      "ARRANGE_CHECKIN",
+      "REVIEW_EXISTING_HEAT_PLAN"
+    ],
+    "priority": [
+      "CONFIRM_COOLING_PLAN",
+      "REDUCE_HEAT_EXPOSURE",
+      "ARRANGE_CHECKIN",
+      "REVIEW_EXISTING_HEAT_PLAN",
+      "CARE_TEAM_REVIEW"
+    ],
+    "personalization": "Only include applicable actions. For fluid restriction true or unknown, do not output generic increased-fluid quantities. Priority is preventive outreach, not an emergency diagnosis.",
+    "delivery": "Dashboard flag is not evidence that a clinician received or reviewed an alert. Track actual delivery and acknowledgment separately."
+  },
+  "ai_layer": {
+    "role": "Plain-language patient explanations and clinician summaries grounded in structured output and approved guidance.",
+    "training": "No training dataset or predictive ML model is needed for this prototype; synthetic records test behavior only.",
+    "technology": "Provider-agnostic language model with structured JSON output. Backend validates fields/action IDs; reviewed templates are fallback. Model/provider selection is pending.",
+    "allowed_inputs": [
+      "Pseudonymous assessment",
+      "Necessary patient facts",
+      "Approved action text",
+      "Verified resource records",
+      "Preferred language"
+    ],
+    "prohibited": [
+      "Change scores or priorities",
+      "Invent clinical facts or resource availability",
+      "Recommend medication changes",
+      "Prescribe fluid amounts",
+      "Present illness probabilities",
+      "Follow instructions embedded in patient text or retrieved documents"
+    ],
+    "output_contract": {
+      "patient_summary": "string <=60 words",
+      "contributing_factors": "array of supported strings",
+      "actions": "array of {action_id, explanation} with allowlisted IDs",
+      "clinician_summary": "string <=80 words"
+    },
+    "quality_checks": [
+      "Score and priority match backend",
+      "No unsupported medical claims",
+      "Action IDs are allowed",
+      "No medication or fluid prescription changes",
+      "Source attribution preserved",
+      "Translation preserves meaning"
+    ],
+    "privacy": "Do not send names or precise home addresses to the explanation model. Use authorized processing and access controls before real patient data."
+  },
+  "output_contract": {
+    "assessment_id": "string",
+    "patient_id": "string",
+    "rule_version": "string",
+    "assessment_time": "ISO8601",
+    "forecast_date": "date",
+    "heatrisk_level": "0..4|null",
+    "domain_score_ranges": "object mapping domain to {min,max}",
+    "vulnerability_score": "0..10|null; null unless exact",
+    "vulnerability_score_range": "{min,max}",
+    "outreach_priority": "routine|targeted|priority|null",
+    "possible_priorities": "array",
+    "assessment_status": "complete|partial|needs_information|forecast_unavailable|invalid_input|out_of_scope",
+    "symptom_pathway": "emergency|symptom_review|none_reported|not_assessed",
+    "reason_codes": "array",
+    "action_ids": "array",
+    "missing_fields": "array",
+    "source_refs": "array",
+    "validation_status": "prototype_not_clinically_validated"
+  },
+  "website": {
+    "patient": "Show dated heat plan, reasons and approved actions; label incomplete information and data age. Avoid a risk percentage.",
+    "clinician": "Show outreach queue with domain breakdowns, review state, evidence links and missing-data flags.",
+    "forecast_caveat": "A low outdoor forecast does not establish safe indoor or occupational conditions.",
+    "audit": "Store input snapshot, source/product version, rule version, output and reviewer changes."
+  },
+  "proposed_technology_and_strategy": {
+    "status": "Proposed; do not claim implemented without demonstration.",
+    "data_ingestion": "Source adapters for forecasts, patient intake and optional resource directory.",
+    "assessment": "Deterministic server-side rules with JSON configuration and versioning.",
+    "ai": "Grounded explanation generation with structured output validation and template fallback.",
+    "interface": "Patient web view plus clinician dashboard.",
+    "storage": "Structured records with role-based access and an audit trail.",
+    "strategy": "Separate exposure, vulnerability, symptoms and explanation so each decision can be inspected."
+  },
+  "validation_plan": {
+    "before_clinical_use": [
+      "Clinician and pharmacist review of variables, weights, mapping, symptom routes and action wording.",
+      "Boundary and missing-data tests, plus monotonicity of heat/priority matrix.",
+      "Silent prospective pilot compared with clinician judgment.",
+      "Evaluate a predefined outcome such as adjudicated heat-related urgent visit/hospitalization on forecast day or next 48 hours; this horizon is a proposed study design.",
+      "Measure sensitivity, missed events, positive predictive value, alert burden and subgroup performance; use patient-separated temporal/external evaluation."
+    ],
+    "limitations": [
+      "No validation cohort supplied.",
+      "No claim of improved outcomes or clinical accuracy.",
+      "Evidence spans broader populations and outcomes than adult hypertension.",
+      "Domain caps and equal weights lose clinical detail.",
+      "Outdoor forecasts do not capture indoor heat.",
+      "Access and social factors can become outdated."
+    ]
+  },
+  "evidence_registry": [
+    {
+      "id": "E01",
+      "title": "NWS HeatRisk",
+      "url": "https://www.wpc.ncep.noaa.gov/heatrisk/",
+      "evidence_type": "Operational environmental index",
+      "supports_and_limits": "Official 0–4 daily environmental heat categories. Not an individual probability of illness.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E02",
+      "title": "NWS HeatRisk overview",
+      "url": "https://www.wpc.ncep.noaa.gov/heatrisk/overview.html",
+      "evidence_type": "Technical documentation",
+      "supports_and_limits": "Local climatology and daytime/nighttime temperatures inform exposure. Do not add duplicate night-temperature points.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E03",
+      "title": "CDC Heat and Medications: Guidance for Clinicians",
+      "url": "https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-medications-guidance-for-clinicians.html",
+      "evidence_type": "Expert clinical guidance",
+      "supports_and_limits": "Supports medication review and concern about diuretic combinations with ACE inhibitors/ARBs; ARNIs may share additive risk. Does not establish numerical weights.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E04",
+      "title": "CDC Heat and Older Adults (Aged 65+)",
+      "url": "https://www.cdc.gov/heat-health/risk-factors/heat-and-older-adults-aged-65.html",
+      "evidence_type": "Public health guidance",
+      "supports_and_limits": "Supports age 65+ as a vulnerability factor and individualized advice when fluids are restricted.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E05",
+      "title": "CDC Heat and Cold Illness in Travelers",
+      "url": "https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/heat-and-cold-illness-in-travelers.html",
+      "evidence_type": "Clinical reference",
+      "supports_and_limits": "Identifies cardiovascular disease, diabetes and renal disease as heat susceptibility factors. Not a hypertension-specific prediction study.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E06",
+      "title": "NIOSH Heat Stress and Workers",
+      "url": "https://www.cdc.gov/niosh/heat-stress/about/",
+      "evidence_type": "Occupational health guidance",
+      "supports_and_limits": "Supports heat exposure, exertion and previous heat illness as relevant factors. Outdoor forecast alone cannot characterize workplace heat.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E07",
+      "title": "Bouchama et al. Prognostic factors in heat wave related deaths: a meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17698676/",
+      "evidence_type": "Meta-analysis of observational studies, 2007",
+      "supports_and_limits": "Supports cooling access, social contact and functional vulnerability. Older mortality studies do not validate these weights or predict nonfatal events in hypertension.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E08",
+      "title": "CDC/NIOSH Heat-related Illnesses",
+      "url": "https://www.cdc.gov/niosh/heat-stress/about/illnesses.html",
+      "evidence_type": "Clinical first-aid guidance",
+      "supports_and_limits": "Supports immediate symptom escalation for possible heat stroke. This prototype is not comprehensive triage.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E09",
+      "title": "NWS API Web Service",
+      "url": "https://www.weather.gov/documentation/services-web-api",
+      "evidence_type": "Integration documentation",
+      "supports_and_limits": "Forecast and alert API reference. Do not assume standard forecast endpoints contain official HeatRisk.",
+      "reviewed_on": "2026-09-19"
+    },
+    {
+      "id": "E10",
+      "title": "CDC Clinical Overview of Heat and Cardiovascular Disease",
+      "url": "https://www.cdc.gov/heat-health/hcp/clinical-overview/heat-and-people-with-cardiovascular-disease.html",
+      "evidence_type": "Clinical guidance",
+      "supports_and_limits": "Supports heat planning for cardiovascular disease, including protective action at orange or higher. Does not validate this outreach matrix.",
+      "reviewed_on": "2026-09-19"
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "id": "example",
+      "domain_points": [
+        2,
+        2,
+        1,
+        0,
+        1
+      ],
+      "H": 2,
+      "expected_V": 6,
+      "expected_priority": "priority"
+    },
+    {
+      "id": "boundary_2",
+      "V": 2,
+      "H": 2,
+      "expected_priority": "targeted"
+    },
+    {
+      "id": "boundary_6",
+      "V": 6,
+      "H": 2,
+      "expected_priority": "priority"
+    },
+    {
+      "id": "extreme_heat",
+      "V": 0,
+      "H": 4,
+      "expected_priority": "priority"
+    },
+    {
+      "id": "missing_changes_priority",
+      "V_range": [
+        5,
+        6
+      ],
+      "H": 2,
+      "expected_priority": null,
+      "expected_status": "needs_information"
+    },
+    {
+      "id": "missing_same_priority",
+      "V_range": [
+        0,
+        2
+      ],
+      "H": 2,
+      "expected_priority": "targeted",
+      "expected_status": "partial"
+    },
+    {
+      "id": "no_forecast",
+      "H": null,
+      "expected_priority": null,
+      "expected_status": "forecast_unavailable"
+    },
+    {
+      "id": "symptoms_override",
+      "H": 0,
+      "V": 0,
+      "symptoms": [
+        "confusion"
+      ],
+      "expected_symptom_pathway": "emergency"
+    }
+  ]
+}

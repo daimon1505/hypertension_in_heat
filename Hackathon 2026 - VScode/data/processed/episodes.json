@@ -1,0 +1,214 @@
+{
+ "placeholder": true,
+ "note": "PLACEHOLDER episodes. TODO_P1: prep_data.py picks real high-TMAX days from NOAA NCEI (Central Park, USW00094728 [VERIFY]) and builds the 7 days around each one. The patient page labels the 7-day list with today's date onwards; only the temperatures come from here.",
+ "episodes": [
+  {
+   "id": "ordinary",
+   "date": "2026-06-15",
+   "tmax": 84,
+   "tmin": 70,
+   "label": "Ordinary summer day",
+   "forecast": [
+    {
+     "label": "June 15",
+     "tmax": 84,
+     "tmin": 70,
+     "date": "2026-06-15"
+    },
+    {
+     "label": "June 16",
+     "tmax": 82,
+     "tmin": 68,
+     "date": "2026-06-16"
+    },
+    {
+     "label": "June 17",
+     "tmax": 85,
+     "tmin": 71,
+     "date": "2026-06-17"
+    },
+    {
+     "label": "June 18",
+     "tmax": 83,
+     "tmin": 69,
+     "date": "2026-06-18"
+    },
+    {
+     "label": "June 19",
+     "tmax": 80,
+     "tmin": 66,
+     "date": "2026-06-19"
+    },
+    {
+     "label": "June 20",
+     "tmax": 82,
+     "tmin": 68,
+     "date": "2026-06-20"
+    },
+    {
+     "label": "June 21",
+     "tmax": 84,
+     "tmin": 70,
+     "date": "2026-06-21"
+    }
+   ],
+   "date_placeholder": true
+  },
+  {
+   "id": "ep_moderate",
+   "date": "2026-07-06",
+   "tmax": 92,
+   "tmin": 76,
+   "label": "Heat episode A \u2014 moderate",
+   "forecast": [
+    {
+     "label": "July 6",
+     "tmax": 92,
+     "tmin": 78,
+     "date": "2026-07-06"
+    },
+    {
+     "label": "July 7",
+     "tmax": 90,
+     "tmin": 76,
+     "date": "2026-07-07"
+    },
+    {
+     "label": "July 8",
+     "tmax": 88,
+     "tmin": 74,
+     "date": "2026-07-08"
+    },
+    {
+     "label": "July 9",
+     "tmax": 91,
+     "tmin": 77,
+     "date": "2026-07-09"
+    },
+    {
+     "label": "July 10",
+     "tmax": 86,
+     "tmin": 72,
+     "date": "2026-07-10"
+    },
+    {
+     "label": "July 11",
+     "tmax": 84,
+     "tmin": 70,
+     "date": "2026-07-11"
+    },
+    {
+     "label": "July 12",
+     "tmax": 83,
+     "tmin": 69,
+     "date": "2026-07-12"
+    }
+   ],
+   "date_placeholder": true
+  },
+  {
+   "id": "ep_severe",
+   "date": "2026-07-20",
+   "tmax": 97,
+   "tmin": 79,
+   "label": "Heat episode B \u2014 severe",
+   "forecast": [
+    {
+     "label": "July 20",
+     "tmax": 97,
+     "tmin": 83,
+     "date": "2026-07-20"
+    },
+    {
+     "label": "July 21",
+     "tmax": 95,
+     "tmin": 81,
+     "date": "2026-07-21"
+    },
+    {
+     "label": "July 22",
+     "tmax": 92,
+     "tmin": 78,
+     "date": "2026-07-22"
+    },
+    {
+     "label": "July 23",
+     "tmax": 90,
+     "tmin": 76,
+     "date": "2026-07-23"
+    },
+    {
+     "label": "July 24",
+     "tmax": 88,
+     "tmin": 74,
+     "date": "2026-07-24"
+    },
+    {
+     "label": "July 25",
+     "tmax": 86,
+     "tmin": 72,
+     "date": "2026-07-25"
+    },
+    {
+     "label": "July 26",
+     "tmax": 85,
+     "tmin": 71,
+     "date": "2026-07-26"
+    }
+   ],
+   "date_placeholder": true
+  },
+  {
+   "id": "ep_extreme",
+   "date": "2026-08-21",
+   "tmax": 101,
+   "tmin": 82,
+   "label": "Heat episode C \u2014 extreme",
+   "forecast": [
+    {
+     "label": "August 21",
+     "tmax": 101,
+     "tmin": 87,
+     "date": "2026-08-21"
+    },
+    {
+     "label": "August 22",
+     "tmax": 99,
+     "tmin": 85,
+     "date": "2026-08-22"
+    },
+    {
+     "label": "August 23",
+     "tmax": 96,
+     "tmin": 82,
+     "date": "2026-08-23"
+    },
+    {
+     "label": "August 24",
+     "tmax": 93,
+     "tmin": 79,
+     "date": "2026-08-24"
+    },
+    {
+     "label": "August 25",
+     "tmax": 90,
+     "tmin": 76,
+     "date": "2026-08-25"
+    },
+    {
+     "label": "August 26",
+     "tmax": 88,
+     "tmin": 74,
+     "date": "2026-08-26"
+    },
+    {
+     "label": "August 27",
+     "tmax": 86,
+     "tmin": 72,
+     "date": "2026-08-27"
+    }
+   ],
+   "date_placeholder": true
+  }
+ ]
+}

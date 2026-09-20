@@ -1,0 +1,300 @@
+{
+ "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+ "source_note": "Compiled by the team from published literature. Demo draft — NOT medical advice. Real deployment requires pharmacist/physician review. The system flags risk only; it never changes prescriptions.",
+ "tiers": {
+  "RED": "Highest heat risk — review first",
+  "YELLOW": "Moderate heat risk — monitor",
+  "GREEN": "No significant heat interaction"
+ },
+ "rules": [
+  {
+   "id": "anticholinergic",
+   "label": "Anticholinergics",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "oxybutynin",
+    "tolterodine",
+    "diphenhydramine",
+    "amitriptyline"
+   ],
+   "indications": "Overactive bladder / urinary incontinence, allergy, Parkinson's disease",
+   "mechanism": "Suppress sweating → impaired heat dissipation",
+   "clinician_note": "Highest priority for review",
+   "patient_advice": "This medicine can stop you sweating normally, so your body cools down less well. Stay somewhere cool on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "diuretic",
+   "label": "Diuretics (\"water pills\")",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "furosemide",
+    "hydrochlorothiazide (HCTZ)",
+    "chlorthalidone"
+   ],
+   "indications": "Hypertension, heart failure, edema",
+   "mechanism": "Dehydration, hypokalemia/hyponatremia",
+   "clinician_note": "Monitor weight and urine output; hydrate adequately",
+   "patient_advice": "This medicine makes you pass more water, so you can get dehydrated faster in the heat. Keep drinking water and tell your doctor if you feel dizzy or very tired. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "antipsychotic",
+   "label": "Antipsychotics",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "haloperidol",
+    "olanzapine",
+    "risperidone"
+   ],
+   "indications": "Schizophrenia, bipolar disorder",
+   "mechanism": "Impaired central thermoregulation",
+   "clinician_note": "Caregivers must be informed; ensure a cooled environment",
+   "patient_advice": "This medicine can make it harder for your body to control its temperature. Stay in a cool place on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "beta_blocker",
+   "label": "Beta-blockers",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "metoprolol",
+    "atenolol",
+    "propranolol"
+   ],
+   "indications": "Hypertension, coronary disease, arrhythmia, heart failure, migraine prophylaxis",
+   "mechanism": "Reduced cardiac output and skin blood flow; mask tachycardia",
+   "clinician_note": "Avoid midday outdoors; watch for unusual fatigue or dizziness",
+   "patient_advice": "This medicine lowers how hard your heart works, which makes it harder to cool down. Avoid being outside in the middle of the day, and watch for unusual tiredness or dizziness. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "lithium",
+   "label": "Lithium",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "lithium"
+   ],
+   "indications": "Bipolar disorder",
+   "mechanism": "Narrow therapeutic index; dehydration → reduced clearance → toxicity",
+   "clinician_note": "Monitor lithium levels; maintain hydration; do not stop on your own",
+   "patient_advice": "If you get dehydrated in the heat, the level of this medicine in your blood can rise too high. Keep drinking water. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "topiramate",
+   "label": "Topiramate",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "topiramate"
+   ],
+   "indications": "Epilepsy, migraine prophylaxis",
+   "mechanism": "Oligohidrosis/anhidrosis (notable in children; FDA label warning)",
+   "clinician_note": "Watch heat dissipation; children are the priority",
+   "patient_advice": "This medicine can reduce sweating, so your body cools down less well. Stay somewhere cool on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "stimulant",
+   "label": "Stimulants",
+   "tier": "RED",
+   "risk_level": "high",
+   "examples": [
+    "amphetamine",
+    "methylphenidate"
+   ],
+   "indications": "ADHD, narcolepsy",
+   "mechanism": "Increased metabolic heat + vasoconstriction",
+   "clinician_note": "Avoid strenuous activity on hot days",
+   "patient_advice": "This medicine makes your body produce more heat. Avoid hard exercise on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "ssri_snri",
+   "label": "SSRIs / SNRIs",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "fluoxetine",
+    "sertraline",
+    "venlafaxine"
+   ],
+   "indications": "Depression, anxiety, OCD, chronic pain",
+   "mechanism": "SIADH → hyponatremia (common in the elderly)",
+   "clinician_note": "Watch for fatigue and confusion",
+   "patient_advice": "In hot weather this medicine can lower the salt level in your blood. Watch for feeling very tired or confused. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "acei_arb",
+   "label": "ACE inhibitors / ARBs",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "lisinopril",
+    "losartan"
+   ],
+   "indications": "Hypertension, heart failure, diabetic nephropathy",
+   "mechanism": "Reduced renal perfusion when dehydrated; AKI/hyperkalemia risk",
+   "clinician_note": "Watch for low urine output if vomiting/diarrhea during a heat wave",
+   "patient_advice": "If you get dehydrated, this medicine can put strain on your kidneys. Tell your doctor if you are passing much less urine, or if you have vomiting or diarrhoea. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "sglt2",
+   "label": "SGLT2 inhibitors",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "empagliflozin",
+    "dapagliflozin"
+   ],
+   "indications": "Type 2 diabetes, heart failure, CKD",
+   "mechanism": "Osmotic diuresis → volume depletion; eDKA risk",
+   "clinician_note": "Follow sick-day rules; ask the doctor about pausing",
+   "patient_advice": "This medicine makes you pass more water, so you can get dehydrated in the heat. Ask your doctor what to do on sick days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "carbamazepine",
+   "label": "Carbamazepine",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "carbamazepine"
+   ],
+   "indications": "Epilepsy, trigeminal neuralgia, bipolar disorder",
+   "mechanism": "SIADH → hyponatremia",
+   "clinician_note": "Same as SSRIs",
+   "patient_advice": "In hot weather this medicine can lower the salt level in your blood. Watch for feeling very tired or confused. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "pseudoephedrine",
+   "label": "Pseudoephedrine",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "pseudoephedrine"
+   ],
+   "indications": "Nasal congestion (cold), allergic rhinitis",
+   "mechanism": "Vasoconstriction → reduced heat loss",
+   "clinician_note": "Use decongestants cautiously on hot days",
+   "patient_advice": "This cold medicine makes it a little harder for your body to lose heat. Use it carefully on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "opioid",
+   "label": "Opioids",
+   "tier": "YELLOW",
+   "risk_level": "moderate",
+   "examples": [
+    "morphine",
+    "oxycodone"
+   ],
+   "indications": "Moderate-to-severe pain",
+   "mechanism": "Mildly impaired thermoregulation and thirst perception",
+   "clinician_note": "Hydrate proactively",
+   "patient_advice": "This medicine can make you less aware that you are thirsty. Drink water regularly on hot days. Never stop or change this medicine on your own — talk to your doctor first.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "statin",
+   "label": "Statins",
+   "tier": "GREEN",
+   "risk_level": "none",
+   "examples": [
+    "atorvastatin",
+    "simvastatin"
+   ],
+   "indications": "Hypercholesterolemia, ASCVD",
+   "mechanism": "No significant heat interaction",
+   "clinician_note": "Continue as normal",
+   "patient_advice": "Heat does not affect this medicine. Keep taking it as usual.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "ppi",
+   "label": "Proton pump inhibitors",
+   "tier": "GREEN",
+   "risk_level": "none",
+   "examples": [
+    "omeprazole"
+   ],
+   "indications": "GERD, peptic ulcer",
+   "mechanism": "No significant heat interaction",
+   "clinician_note": "Continue as normal",
+   "patient_advice": "Heat does not affect this medicine. Keep taking it as usual.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "antihistamine_2g",
+   "label": "2nd-generation antihistamines",
+   "tier": "GREEN",
+   "risk_level": "none",
+   "examples": [
+    "loratadine",
+    "cetirizine"
+   ],
+   "indications": "Allergic rhinitis, urticaria",
+   "mechanism": "Minimal anticholinergic effect",
+   "clinician_note": "Continue as normal; do not confuse with 1st-gen",
+   "patient_advice": "Heat does not affect this medicine. Keep taking it as usual.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  },
+  {
+   "id": "ccb_amlodipine",
+   "label": "Amlodipine (calcium channel blocker)",
+   "tier": "GREEN",
+   "risk_level": "none",
+   "examples": [
+    "amlodipine"
+   ],
+   "indications": "Hypertension, angina",
+   "mechanism": "No direct heat interaction",
+   "clinician_note": "Continue as normal",
+   "patient_advice": "Heat does not affect this medicine. Keep taking it as usual.",
+   "source": "Team drug-heat knowledge base v0.1 (Drug-Heat Risk Table.xlsx, 2026-09-19)",
+   "source_url": "Drug-Heat Risk Table.xlsx",
+   "reviewed_by": "UNREVIEWED — team draft, needs pharmacist/physician review"
+  }
+ ]
+}

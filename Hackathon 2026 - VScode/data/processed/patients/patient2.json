@@ -1,0 +1,219 @@
+{
+  "id": "patient2",
+  "synthetic": true,
+  "sample_persona": true,
+  "review_status": "SAMPLE persona drafted by Claude Code — team to confirm; clinical review pending",
+  "display_name": "Robert Hayes",
+  "age": 67,
+  "sex": "Male",
+  "conditions": [
+    "Hypertension",
+    "Chronic kidney disease (stage 3)"
+  ],
+  "medications": [
+    {
+      "name": "Furosemide",
+      "dose": "40 mg by mouth every morning",
+      "class_id": "diuretic",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2020-04-10"
+    },
+    {
+      "name": "Metoprolol succinate",
+      "dose": "50 mg by mouth daily",
+      "class_id": "beta_blocker",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2019-11-05"
+    },
+    {
+      "name": "Lisinopril",
+      "dose": "20 mg by mouth daily",
+      "class_id": "acei_arb",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2018-03-22"
+    }
+  ],
+  "heat_profile": {
+    "has_ac": false,
+    "lives_alone": true,
+    "mobility": "Walks slowly; uses a cane for long distances"
+  },
+  "locations": [
+    {
+      "id": "home",
+      "label": "Home",
+      "type": "home",
+      "nta_id": "BX0402",
+      "address": "1180 Ogden Ave (fictional)"
+    },
+    {
+      "id": "senior_center",
+      "label": "Senior center",
+      "type": "work",
+      "nta_id": "BX0503",
+      "address": "Fordham Senior Center (fictional)"
+    },
+    {
+      "id": "pharmacy",
+      "label": "Pharmacy",
+      "type": "pharmacy",
+      "nta_id": "BX0301",
+      "address": "Morrisania Pharmacy (fictional)"
+    }
+  ],
+  "current_location_id": "home",
+  "consent": {
+    "share_red_alerts_with_care_team": true,
+    "date": "2026-04-22"
+  },
+  "chart": {
+    "demographics": {
+      "dob": "1959-06-30 (synthetic)",
+      "mrn": "SYN-000102",
+      "address": "1180 Ogden Ave, Apt 2B, Bronx, NY 10452 (fictional)",
+      "phone": "718-555-0102",
+      "language": "English",
+      "emergency_contact": {
+        "name": "Denise Hayes",
+        "relationship": "Sister",
+        "phone": "718-555-0112"
+      }
+    },
+    "healthcare_proxy": {
+      "name": "Denise Hayes",
+      "relationship": "Sister",
+      "phone": "718-555-0112"
+    },
+    "pharmacy": {
+      "name": "Morrisania Pharmacy (fictional)",
+      "address": "1400 Boston Rd, Bronx, NY (fictional)",
+      "phone": "718-555-0122"
+    },
+    "visit_notes": [
+      {
+        "date": "2026-06-16",
+        "type": "Primary care — hypertension and CKD follow-up",
+        "provider": "Dr. A. Rivera",
+        "subjective": "Here with his senior-center case worker. No air conditioning at home; uses a fan, and says the apartment 'gets very hot upstairs'. Reports feeling more tired than usual on hot afternoons and occasional light-headedness when he stands. Denies chest pain, shortness of breath, or swelling. Takes furosemide, metoprolol and lisinopril as prescribed.",
+        "objective": "BP 132/82 sitting, 118/70 standing. HR 62 (on beta-blocker). Temp 98.6°F. Weight 81.4 kg (down 1.2 kg since April). Skin warm and dry. No peripheral edema.",
+        "assessment": "1) Hypertension, controlled. 2) CKD stage 3, stable. 3) HIGH HEAT RISK: no AC, lives alone, age 67, and three blood-pressure medicines that each raise heat risk (loop diuretic, beta-blocker, ACE inhibitor).",
+        "plan": "BMP today. Referred to case worker for an air-conditioner assistance application. Reviewed the cooling-center plan for hot days and gave the senior center as his daytime cool place. Counseled on fluids, and on calling the clinic if urine output drops or he has vomiting or diarrhoea. No medicine changes today; will review dosing if labs show volume depletion. Enrolled in heat alerts, consent signed."
+      },
+      {
+        "date": "2026-03-02",
+        "type": "Primary care — routine",
+        "provider": "Dr. A. Rivera",
+        "subjective": "Attends the senior center 4 days a week. No complaints.",
+        "objective": "BP 128/78, HR 64. Weight 82.6 kg.",
+        "assessment": "Hypertension and CKD stage 3, both stable.",
+        "plan": "Continue current medicines. Repeat kidney function in 3 months."
+      }
+    ],
+    "after_visit_summaries": [
+      {
+        "date": "2026-06-16",
+        "summary": "Your apartment gets hot and you do not have AC. Your case worker will help you apply for an air conditioner. On hot days, spend the afternoon at the senior center or another cool place, and keep drinking water. Call us if you are passing much less urine, or if you feel dizzy or very weak. If a red heat alert happens where you are, your care team will be told automatically."
+      }
+    ],
+    "appointments": [
+      {
+        "date": "2026-09-29 09:00",
+        "provider": "Lab",
+        "reason": "Basic metabolic panel (kidney function)"
+      },
+      {
+        "date": "2026-10-20 11:00",
+        "provider": "Dr. A. Rivera (Primary care)",
+        "reason": "Blood pressure and CKD follow-up"
+      }
+    ],
+    "other_conditions": [
+      "Former smoker (quit 2018)",
+      "Osteoarthritis of both knees"
+    ],
+    "labs": [
+      {
+        "date": "2026-06-16",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 137,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 5.2,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": "H"
+          },
+          {
+            "name": "Creatinine",
+            "value": 1.62,
+            "unit": "mg/dL",
+            "ref_range": "0.70–1.30",
+            "flag": "H"
+          },
+          {
+            "name": "eGFR",
+            "value": 43,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": "L"
+          }
+        ]
+      },
+      {
+        "date": "2026-03-02",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 139,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 4.6,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": ""
+          },
+          {
+            "name": "Creatinine",
+            "value": 1.48,
+            "unit": "mg/dL",
+            "ref_range": "0.70–1.30",
+            "flag": "H"
+          },
+          {
+            "name": "eGFR",
+            "value": 48,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": "L"
+          }
+        ]
+      }
+    ],
+    "imaging": [
+      {
+        "date": "2026-01-14",
+        "modality": "Ultrasound",
+        "body_part": "Kidneys",
+        "report": "SYNTHETIC REPORT. Both kidneys slightly small with increased cortical echogenicity, in keeping with chronic medical renal disease. No obstruction. Impression: chronic kidney changes, no hydronephrosis.",
+        "image_file": "data/placeholders/scan_ultrasound.svg"
+      }
+    ]
+  },
+  "doctor_note": {
+    "date": "2026-07-19",
+    "from": "Dr. A. Rivera",
+    "text": "Please spend the hot afternoons at the senior center while this heat lasts. Call us if you are passing much less urine than usual."
+  }
+}

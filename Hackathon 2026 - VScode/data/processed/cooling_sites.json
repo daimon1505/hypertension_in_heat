@@ -1,0 +1,1787 @@
+{
+ "placeholder": true,
+ "note": "EXAMPLE locations, one per neighborhood, placed at the neighborhood centre. Not real cooling centers. TODO_P2: replace with NYC's official cooling-center list (published during heat emergencies).",
+ "finder": {
+  "label": "NYC Cooling Center Finder (official, opens during heat emergencies)",
+  "url": "https://finder.nyc.gov/coolingcenters"
+ },
+ "hotline": {
+  "label": "Call 311 (or 212-639-9675) to find a cooling center",
+  "tel": "311"
+ },
+ "sites": [
+  {
+   "id": "cs_BK0101",
+   "name": "Greenpoint",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0101",
+   "borough": "Brooklyn",
+   "lat": 40.72946,
+   "lon": -73.94944
+  },
+  {
+   "id": "cs_BK0102",
+   "name": "Williamsburg",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0102",
+   "borough": "Brooklyn",
+   "lat": 40.71491,
+   "lon": -73.95863
+  },
+  {
+   "id": "cs_BK0103",
+   "name": "South Williamsburg",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0103",
+   "borough": "Brooklyn",
+   "lat": 40.70319,
+   "lon": -73.95662
+  },
+  {
+   "id": "cs_BK0104",
+   "name": "East Williamsburg",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0104",
+   "borough": "Brooklyn",
+   "lat": 40.71328,
+   "lon": -73.93649
+  },
+  {
+   "id": "cs_BK0201",
+   "name": "Brooklyn Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0201",
+   "borough": "Brooklyn",
+   "lat": 40.69548,
+   "lon": -73.99481
+  },
+  {
+   "id": "cs_BK0202",
+   "name": "Downtown Brooklyn-DUMBO-Boerum Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0202",
+   "borough": "Brooklyn",
+   "lat": 40.6949,
+   "lon": -73.98582
+  },
+  {
+   "id": "cs_BK0203",
+   "name": "Fort Greene",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0203",
+   "borough": "Brooklyn",
+   "lat": 40.6912,
+   "lon": -73.97438
+  },
+  {
+   "id": "cs_BK0204",
+   "name": "Clinton Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0204",
+   "borough": "Brooklyn",
+   "lat": 40.68902,
+   "lon": -73.96448
+  },
+  {
+   "id": "cs_BK0301",
+   "name": "Bedford-Stuyvesant (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0301",
+   "borough": "Brooklyn",
+   "lat": 40.68893,
+   "lon": -73.95099
+  },
+  {
+   "id": "cs_BK0302",
+   "name": "Bedford-Stuyvesant (East)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0302",
+   "borough": "Brooklyn",
+   "lat": 40.68662,
+   "lon": -73.93179
+  },
+  {
+   "id": "cs_BK0401",
+   "name": "Bushwick (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0401",
+   "borough": "Brooklyn",
+   "lat": 40.70099,
+   "lon": -73.92528
+  },
+  {
+   "id": "cs_BK0402",
+   "name": "Bushwick (East)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0402",
+   "borough": "Brooklyn",
+   "lat": 40.69123,
+   "lon": -73.91296
+  },
+  {
+   "id": "cs_BK0501",
+   "name": "Cypress Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0501",
+   "borough": "Brooklyn",
+   "lat": 40.68251,
+   "lon": -73.8821
+  },
+  {
+   "id": "cs_BK0502",
+   "name": "East New York (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0502",
+   "borough": "Brooklyn",
+   "lat": 40.6725,
+   "lon": -73.8895
+  },
+  {
+   "id": "cs_BK0503",
+   "name": "East New York-New Lots",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0503",
+   "borough": "Brooklyn",
+   "lat": 40.65972,
+   "lon": -73.88805
+  },
+  {
+   "id": "cs_BK0504",
+   "name": "Spring Creek-Starrett City",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0504",
+   "borough": "Brooklyn",
+   "lat": 40.65096,
+   "lon": -73.87639
+  },
+  {
+   "id": "cs_BK0505",
+   "name": "East New York-City Line",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0505",
+   "borough": "Brooklyn",
+   "lat": 40.67054,
+   "lon": -73.86609
+  },
+  {
+   "id": "cs_BK0601",
+   "name": "Carroll Gardens-Cobble Hill-Gowanus-Red Hook",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0601",
+   "borough": "Brooklyn",
+   "lat": 40.67813,
+   "lon": -74.00007
+  },
+  {
+   "id": "cs_BK0602",
+   "name": "Park Slope",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0602",
+   "borough": "Brooklyn",
+   "lat": 40.67187,
+   "lon": -73.9798
+  },
+  {
+   "id": "cs_BK0701",
+   "name": "Windsor Terrace-South Slope",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0701",
+   "borough": "Brooklyn",
+   "lat": 40.65604,
+   "lon": -73.98005
+  },
+  {
+   "id": "cs_BK0702",
+   "name": "Sunset Park (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0702",
+   "borough": "Brooklyn",
+   "lat": 40.65348,
+   "lon": -74.01009
+  },
+  {
+   "id": "cs_BK0703",
+   "name": "Sunset Park (Central)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0703",
+   "borough": "Brooklyn",
+   "lat": 40.6424,
+   "lon": -74.00783
+  },
+  {
+   "id": "cs_BK0801",
+   "name": "Prospect Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0801",
+   "borough": "Brooklyn",
+   "lat": 40.6776,
+   "lon": -73.96758
+  },
+  {
+   "id": "cs_BK0802",
+   "name": "Crown Heights (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0802",
+   "borough": "Brooklyn",
+   "lat": 40.67386,
+   "lon": -73.94189
+  },
+  {
+   "id": "cs_BK0901",
+   "name": "Crown Heights (South)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0901",
+   "borough": "Brooklyn",
+   "lat": 40.66675,
+   "lon": -73.94601
+  },
+  {
+   "id": "cs_BK0902",
+   "name": "Prospect Lefferts Gardens-Wingate",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK0902",
+   "borough": "Brooklyn",
+   "lat": 40.65976,
+   "lon": -73.94795
+  },
+  {
+   "id": "cs_BK1001",
+   "name": "Bay Ridge",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1001",
+   "borough": "Brooklyn",
+   "lat": 40.62668,
+   "lon": -74.02992
+  },
+  {
+   "id": "cs_BK1002",
+   "name": "Dyker Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1002",
+   "borough": "Brooklyn",
+   "lat": 40.62397,
+   "lon": -74.01085
+  },
+  {
+   "id": "cs_BK1101",
+   "name": "Bensonhurst",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1101",
+   "borough": "Brooklyn",
+   "lat": 40.61327,
+   "lon": -73.99324
+  },
+  {
+   "id": "cs_BK1102",
+   "name": "Bath Beach",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1102",
+   "borough": "Brooklyn",
+   "lat": 40.60427,
+   "lon": -74.00749
+  },
+  {
+   "id": "cs_BK1103",
+   "name": "Gravesend (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1103",
+   "borough": "Brooklyn",
+   "lat": 40.5993,
+   "lon": -73.98572
+  },
+  {
+   "id": "cs_BK1201",
+   "name": "Sunset Park (East)-Borough Park (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1201",
+   "borough": "Brooklyn",
+   "lat": 40.6408,
+   "lon": -73.99938
+  },
+  {
+   "id": "cs_BK1202",
+   "name": "Borough Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1202",
+   "borough": "Brooklyn",
+   "lat": 40.63293,
+   "lon": -73.98954
+  },
+  {
+   "id": "cs_BK1203",
+   "name": "Kensington",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1203",
+   "borough": "Brooklyn",
+   "lat": 40.64113,
+   "lon": -73.97605
+  },
+  {
+   "id": "cs_BK1204",
+   "name": "Mapleton-Midwood (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1204",
+   "borough": "Brooklyn",
+   "lat": 40.61932,
+   "lon": -73.97332
+  },
+  {
+   "id": "cs_BK1301",
+   "name": "Gravesend (South)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1301",
+   "borough": "Brooklyn",
+   "lat": 40.588,
+   "lon": -73.978
+  },
+  {
+   "id": "cs_BK1302",
+   "name": "Coney Island-Sea Gate",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1302",
+   "borough": "Brooklyn",
+   "lat": 40.57695,
+   "lon": -73.98798
+  },
+  {
+   "id": "cs_BK1303",
+   "name": "Brighton Beach",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1303",
+   "borough": "Brooklyn",
+   "lat": 40.5791,
+   "lon": -73.96072
+  },
+  {
+   "id": "cs_BK1401",
+   "name": "Flatbush",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1401",
+   "borough": "Brooklyn",
+   "lat": 40.64064,
+   "lon": -73.95638
+  },
+  {
+   "id": "cs_BK1402",
+   "name": "Flatbush (West)-Ditmas Park-Parkville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1402",
+   "borough": "Brooklyn",
+   "lat": 40.63654,
+   "lon": -73.9662
+  },
+  {
+   "id": "cs_BK1403",
+   "name": "Midwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1403",
+   "borough": "Brooklyn",
+   "lat": 40.62037,
+   "lon": -73.9556
+  },
+  {
+   "id": "cs_BK1501",
+   "name": "Gravesend (East)-Homecrest",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1501",
+   "borough": "Brooklyn",
+   "lat": 40.59908,
+   "lon": -73.96587
+  },
+  {
+   "id": "cs_BK1502",
+   "name": "Madison",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1502",
+   "borough": "Brooklyn",
+   "lat": 40.60491,
+   "lon": -73.94813
+  },
+  {
+   "id": "cs_BK1503",
+   "name": "Sheepshead Bay-Manhattan Beach-Gerritsen Beach",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1503",
+   "borough": "Brooklyn",
+   "lat": 40.58827,
+   "lon": -73.9415
+  },
+  {
+   "id": "cs_BK1601",
+   "name": "Ocean Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1601",
+   "borough": "Brooklyn",
+   "lat": 40.67661,
+   "lon": -73.91363
+  },
+  {
+   "id": "cs_BK1602",
+   "name": "Brownsville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1602",
+   "borough": "Brooklyn",
+   "lat": 40.66406,
+   "lon": -73.90952
+  },
+  {
+   "id": "cs_BK1701",
+   "name": "East Flatbush-Erasmus",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1701",
+   "borough": "Brooklyn",
+   "lat": 40.64856,
+   "lon": -73.95015
+  },
+  {
+   "id": "cs_BK1702",
+   "name": "East Flatbush-Farragut",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1702",
+   "borough": "Brooklyn",
+   "lat": 40.63915,
+   "lon": -73.93765
+  },
+  {
+   "id": "cs_BK1703",
+   "name": "East Flatbush-Rugby",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1703",
+   "borough": "Brooklyn",
+   "lat": 40.65154,
+   "lon": -73.92976
+  },
+  {
+   "id": "cs_BK1704",
+   "name": "East Flatbush-Remsen Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1704",
+   "borough": "Brooklyn",
+   "lat": 40.65621,
+   "lon": -73.91916
+  },
+  {
+   "id": "cs_BK1801",
+   "name": "Flatlands",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1801",
+   "borough": "Brooklyn",
+   "lat": 40.62628,
+   "lon": -73.93009
+  },
+  {
+   "id": "cs_BK1802",
+   "name": "Marine Park-Mill Basin-Bergen Beach",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1802",
+   "borough": "Brooklyn",
+   "lat": 40.61498,
+   "lon": -73.91851
+  },
+  {
+   "id": "cs_BK1803",
+   "name": "Canarsie",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BK1803",
+   "borough": "Brooklyn",
+   "lat": 40.63936,
+   "lon": -73.90149
+  },
+  {
+   "id": "cs_BX0101",
+   "name": "Mott Haven-Port Morris",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0101",
+   "borough": "Bronx",
+   "lat": 40.80753,
+   "lon": -73.91727
+  },
+  {
+   "id": "cs_BX0102",
+   "name": "Melrose",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0102",
+   "borough": "Bronx",
+   "lat": 40.81825,
+   "lon": -73.91279
+  },
+  {
+   "id": "cs_BX0201",
+   "name": "Hunts Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0201",
+   "borough": "Bronx",
+   "lat": 40.81086,
+   "lon": -73.885
+  },
+  {
+   "id": "cs_BX0202",
+   "name": "Longwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0202",
+   "borough": "Bronx",
+   "lat": 40.82098,
+   "lon": -73.89657
+  },
+  {
+   "id": "cs_BX0301",
+   "name": "Morrisania",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0301",
+   "borough": "Bronx",
+   "lat": 40.8273,
+   "lon": -73.90477
+  },
+  {
+   "id": "cs_BX0302",
+   "name": "Claremont Village-Claremont (East)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0302",
+   "borough": "Bronx",
+   "lat": 40.83758,
+   "lon": -73.90354
+  },
+  {
+   "id": "cs_BX0303",
+   "name": "Crotona Park East",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0303",
+   "borough": "Bronx",
+   "lat": 40.83209,
+   "lon": -73.88869
+  },
+  {
+   "id": "cs_BX0401",
+   "name": "Concourse-Concourse Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0401",
+   "borough": "Bronx",
+   "lat": 40.82673,
+   "lon": -73.92175
+  },
+  {
+   "id": "cs_BX0402",
+   "name": "Highbridge",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0402",
+   "borough": "Bronx",
+   "lat": 40.83693,
+   "lon": -73.92773
+  },
+  {
+   "id": "cs_BX0403",
+   "name": "Mount Eden-Claremont (West)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0403",
+   "borough": "Bronx",
+   "lat": 40.84047,
+   "lon": -73.91443
+  },
+  {
+   "id": "cs_BX0501",
+   "name": "University Heights (South)-Morris Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0501",
+   "borough": "Bronx",
+   "lat": 40.85186,
+   "lon": -73.91608
+  },
+  {
+   "id": "cs_BX0502",
+   "name": "Mount Hope",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0502",
+   "borough": "Bronx",
+   "lat": 40.84981,
+   "lon": -73.90444
+  },
+  {
+   "id": "cs_BX0503",
+   "name": "Fordham Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0503",
+   "borough": "Bronx",
+   "lat": 40.85875,
+   "lon": -73.89909
+  },
+  {
+   "id": "cs_BX0601",
+   "name": "West Farms",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0601",
+   "borough": "Bronx",
+   "lat": 40.84125,
+   "lon": -73.87865
+  },
+  {
+   "id": "cs_BX0602",
+   "name": "Tremont",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0602",
+   "borough": "Bronx",
+   "lat": 40.84689,
+   "lon": -73.89172
+  },
+  {
+   "id": "cs_BX0603",
+   "name": "Belmont",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0603",
+   "borough": "Bronx",
+   "lat": 40.85761,
+   "lon": -73.88704
+  },
+  {
+   "id": "cs_BX0701",
+   "name": "University Heights (North)-Fordham",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0701",
+   "borough": "Bronx",
+   "lat": 40.86458,
+   "lon": -73.90475
+  },
+  {
+   "id": "cs_BX0702",
+   "name": "Bedford Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0702",
+   "borough": "Bronx",
+   "lat": 40.87355,
+   "lon": -73.8908
+  },
+  {
+   "id": "cs_BX0703",
+   "name": "Norwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0703",
+   "borough": "Bronx",
+   "lat": 40.87714,
+   "lon": -73.87905
+  },
+  {
+   "id": "cs_BX0801",
+   "name": "Kingsbridge Heights-Van Cortlandt Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0801",
+   "borough": "Bronx",
+   "lat": 40.87775,
+   "lon": -73.89898
+  },
+  {
+   "id": "cs_BX0802",
+   "name": "Kingsbridge-Marble Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0802",
+   "borough": "Bronx",
+   "lat": 40.88081,
+   "lon": -73.90575
+  },
+  {
+   "id": "cs_BX0803",
+   "name": "Riverdale-Spuyten Duyvil",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0803",
+   "borough": "Bronx",
+   "lat": 40.89574,
+   "lon": -73.90879
+  },
+  {
+   "id": "cs_BX0901",
+   "name": "Soundview-Bruckner-Bronx River",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0901",
+   "borough": "Bronx",
+   "lat": 40.82961,
+   "lon": -73.87321
+  },
+  {
+   "id": "cs_BX0902",
+   "name": "Soundview-Clason Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0902",
+   "borough": "Bronx",
+   "lat": 40.81611,
+   "lon": -73.8591
+  },
+  {
+   "id": "cs_BX0903",
+   "name": "Castle Hill-Unionport",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0903",
+   "borough": "Bronx",
+   "lat": 40.82475,
+   "lon": -73.85046
+  },
+  {
+   "id": "cs_BX0904",
+   "name": "Parkchester",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX0904",
+   "borough": "Bronx",
+   "lat": 40.83771,
+   "lon": -73.85795
+  },
+  {
+   "id": "cs_BX1001",
+   "name": "Westchester Square",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1001",
+   "borough": "Bronx",
+   "lat": 40.83768,
+   "lon": -73.84591
+  },
+  {
+   "id": "cs_BX1002",
+   "name": "Throgs Neck-Schuylerville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1002",
+   "borough": "Bronx",
+   "lat": 40.82551,
+   "lon": -73.82058
+  },
+  {
+   "id": "cs_BX1003",
+   "name": "Pelham Bay-Country Club-City Island",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1003",
+   "borough": "Bronx",
+   "lat": 40.84146,
+   "lon": -73.82041
+  },
+  {
+   "id": "cs_BX1004",
+   "name": "Co-op City",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1004",
+   "borough": "Bronx",
+   "lat": 40.87232,
+   "lon": -73.82628
+  },
+  {
+   "id": "cs_BX1101",
+   "name": "Pelham Parkway-Van Nest",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1101",
+   "borough": "Bronx",
+   "lat": 40.84787,
+   "lon": -73.86492
+  },
+  {
+   "id": "cs_BX1102",
+   "name": "Morris Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1102",
+   "borough": "Bronx",
+   "lat": 40.85179,
+   "lon": -73.8517
+  },
+  {
+   "id": "cs_BX1103",
+   "name": "Pelham Gardens",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1103",
+   "borough": "Bronx",
+   "lat": 40.86419,
+   "lon": -73.84673
+  },
+  {
+   "id": "cs_BX1104",
+   "name": "Allerton",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1104",
+   "borough": "Bronx",
+   "lat": 40.864,
+   "lon": -73.86423
+  },
+  {
+   "id": "cs_BX1201",
+   "name": "Williamsbridge-Olinville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1201",
+   "borough": "Bronx",
+   "lat": 40.88101,
+   "lon": -73.86072
+  },
+  {
+   "id": "cs_BX1202",
+   "name": "Eastchester-Edenwald-Baychester",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1202",
+   "borough": "Bronx",
+   "lat": 40.88149,
+   "lon": -73.83659
+  },
+  {
+   "id": "cs_BX1203",
+   "name": "Wakefield-Woodlawn",
+   "type": "Library / community centre (example location)",
+   "nta_id": "BX1203",
+   "borough": "Bronx",
+   "lat": 40.89799,
+   "lon": -73.85395
+  },
+  {
+   "id": "cs_MN0101",
+   "name": "Financial District-Battery Park City",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0101",
+   "borough": "Manhattan",
+   "lat": 40.70859,
+   "lon": -74.01085
+  },
+  {
+   "id": "cs_MN0102",
+   "name": "Tribeca-Civic Center",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0102",
+   "borough": "Manhattan",
+   "lat": 40.71732,
+   "lon": -74.00724
+  },
+  {
+   "id": "cs_MN0201",
+   "name": "SoHo-Little Italy-Hudson Square",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0201",
+   "borough": "Manhattan",
+   "lat": 40.72356,
+   "lon": -74.00176
+  },
+  {
+   "id": "cs_MN0202",
+   "name": "Greenwich Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0202",
+   "borough": "Manhattan",
+   "lat": 40.73066,
+   "lon": -73.99567
+  },
+  {
+   "id": "cs_MN0203",
+   "name": "West Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0203",
+   "borough": "Manhattan",
+   "lat": 40.73482,
+   "lon": -74.00591
+  },
+  {
+   "id": "cs_MN0301",
+   "name": "Chinatown-Two Bridges",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0301",
+   "borough": "Manhattan",
+   "lat": 40.71287,
+   "lon": -73.99369
+  },
+  {
+   "id": "cs_MN0302",
+   "name": "Lower East Side",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0302",
+   "borough": "Manhattan",
+   "lat": 40.71698,
+   "lon": -73.98386
+  },
+  {
+   "id": "cs_MN0303",
+   "name": "East Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0303",
+   "borough": "Manhattan",
+   "lat": 40.72594,
+   "lon": -73.98214
+  },
+  {
+   "id": "cs_MN0401",
+   "name": "Chelsea-Hudson Yards",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0401",
+   "borough": "Manhattan",
+   "lat": 40.74936,
+   "lon": -74.00115
+  },
+  {
+   "id": "cs_MN0402",
+   "name": "Hell's Kitchen",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0402",
+   "borough": "Manhattan",
+   "lat": 40.76416,
+   "lon": -73.99238
+  },
+  {
+   "id": "cs_MN0501",
+   "name": "Midtown South-Flatiron-Union Square",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0501",
+   "borough": "Manhattan",
+   "lat": 40.74404,
+   "lon": -73.98975
+  },
+  {
+   "id": "cs_MN0502",
+   "name": "Midtown-Times Square",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0502",
+   "borough": "Manhattan",
+   "lat": 40.7578,
+   "lon": -73.98161
+  },
+  {
+   "id": "cs_MN0601",
+   "name": "Stuyvesant Town-Peter Cooper Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0601",
+   "borough": "Manhattan",
+   "lat": 40.73186,
+   "lon": -73.97667
+  },
+  {
+   "id": "cs_MN0602",
+   "name": "Gramercy",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0602",
+   "borough": "Manhattan",
+   "lat": 40.73685,
+   "lon": -73.98409
+  },
+  {
+   "id": "cs_MN0603",
+   "name": "Murray Hill-Kips Bay",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0603",
+   "borough": "Manhattan",
+   "lat": 40.74428,
+   "lon": -73.97601
+  },
+  {
+   "id": "cs_MN0604",
+   "name": "East Midtown-Turtle Bay",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0604",
+   "borough": "Manhattan",
+   "lat": 40.75613,
+   "lon": -73.96852
+  },
+  {
+   "id": "cs_MN0701",
+   "name": "Upper West Side-Lincoln Square",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0701",
+   "borough": "Manhattan",
+   "lat": 40.77484,
+   "lon": -73.98467
+  },
+  {
+   "id": "cs_MN0702",
+   "name": "Upper West Side (Central)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0702",
+   "borough": "Manhattan",
+   "lat": 40.7877,
+   "lon": -73.97593
+  },
+  {
+   "id": "cs_MN0703",
+   "name": "Upper West Side-Manhattan Valley",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0703",
+   "borough": "Manhattan",
+   "lat": 40.79921,
+   "lon": -73.96731
+  },
+  {
+   "id": "cs_MN0801",
+   "name": "Upper East Side-Lenox Hill-Roosevelt Island",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0801",
+   "borough": "Manhattan",
+   "lat": 40.76623,
+   "lon": -73.95724
+  },
+  {
+   "id": "cs_MN0802",
+   "name": "Upper East Side-Carnegie Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0802",
+   "borough": "Manhattan",
+   "lat": 40.77474,
+   "lon": -73.96117
+  },
+  {
+   "id": "cs_MN0803",
+   "name": "Upper East Side-Yorkville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0803",
+   "borough": "Manhattan",
+   "lat": 40.77728,
+   "lon": -73.94878
+  },
+  {
+   "id": "cs_MN0901",
+   "name": "Morningside Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0901",
+   "borough": "Manhattan",
+   "lat": 40.80941,
+   "lon": -73.96177
+  },
+  {
+   "id": "cs_MN0902",
+   "name": "Manhattanville-West Harlem",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0902",
+   "borough": "Manhattan",
+   "lat": 40.81804,
+   "lon": -73.95383
+  },
+  {
+   "id": "cs_MN0903",
+   "name": "Hamilton Heights-Sugar Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN0903",
+   "borough": "Manhattan",
+   "lat": 40.82704,
+   "lon": -73.94848
+  },
+  {
+   "id": "cs_MN1001",
+   "name": "Harlem (South)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1001",
+   "borough": "Manhattan",
+   "lat": 40.80432,
+   "lon": -73.95131
+  },
+  {
+   "id": "cs_MN1002",
+   "name": "Harlem (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1002",
+   "borough": "Manhattan",
+   "lat": 40.8189,
+   "lon": -73.94096
+  },
+  {
+   "id": "cs_MN1101",
+   "name": "East Harlem (South)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1101",
+   "borough": "Manhattan",
+   "lat": 40.78998,
+   "lon": -73.94575
+  },
+  {
+   "id": "cs_MN1102",
+   "name": "East Harlem (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1102",
+   "borough": "Manhattan",
+   "lat": 40.80165,
+   "lon": -73.93745
+  },
+  {
+   "id": "cs_MN1201",
+   "name": "Washington Heights (South)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1201",
+   "borough": "Manhattan",
+   "lat": 40.84091,
+   "lon": -73.94152
+  },
+  {
+   "id": "cs_MN1202",
+   "name": "Washington Heights (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1202",
+   "borough": "Manhattan",
+   "lat": 40.85647,
+   "lon": -73.93347
+  },
+  {
+   "id": "cs_MN1203",
+   "name": "Inwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "MN1203",
+   "borough": "Manhattan",
+   "lat": 40.86606,
+   "lon": -73.91932
+  },
+  {
+   "id": "cs_QN0101",
+   "name": "Astoria (North)-Ditmars-Steinway",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0101",
+   "borough": "Queens",
+   "lat": 40.77738,
+   "lon": -73.90527
+  },
+  {
+   "id": "cs_QN0102",
+   "name": "Old Astoria-Hallets Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0102",
+   "borough": "Queens",
+   "lat": 40.77208,
+   "lon": -73.93141
+  },
+  {
+   "id": "cs_QN0103",
+   "name": "Astoria (Central)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0103",
+   "borough": "Queens",
+   "lat": 40.76426,
+   "lon": -73.92305
+  },
+  {
+   "id": "cs_QN0104",
+   "name": "Astoria (East)-Woodside (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0104",
+   "borough": "Queens",
+   "lat": 40.75951,
+   "lon": -73.91032
+  },
+  {
+   "id": "cs_QN0105",
+   "name": "Queensbridge-Ravenswood-Dutch Kills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0105",
+   "borough": "Queens",
+   "lat": 40.7583,
+   "lon": -73.93791
+  },
+  {
+   "id": "cs_QN0201",
+   "name": "Long Island City-Hunters Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0201",
+   "borough": "Queens",
+   "lat": 40.7454,
+   "lon": -73.94892
+  },
+  {
+   "id": "cs_QN0202",
+   "name": "Sunnyside",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0202",
+   "borough": "Queens",
+   "lat": 40.7384,
+   "lon": -73.92644
+  },
+  {
+   "id": "cs_QN0203",
+   "name": "Woodside",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0203",
+   "borough": "Queens",
+   "lat": 40.74309,
+   "lon": -73.90142
+  },
+  {
+   "id": "cs_QN0301",
+   "name": "Jackson Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0301",
+   "borough": "Queens",
+   "lat": 40.75551,
+   "lon": -73.88633
+  },
+  {
+   "id": "cs_QN0302",
+   "name": "East Elmhurst",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0302",
+   "borough": "Queens",
+   "lat": 40.76404,
+   "lon": -73.87223
+  },
+  {
+   "id": "cs_QN0303",
+   "name": "North Corona",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0303",
+   "borough": "Queens",
+   "lat": 40.75405,
+   "lon": -73.86282
+  },
+  {
+   "id": "cs_QN0401",
+   "name": "Elmhurst",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0401",
+   "borough": "Queens",
+   "lat": 40.73938,
+   "lon": -73.87909
+  },
+  {
+   "id": "cs_QN0402",
+   "name": "Corona",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0402",
+   "borough": "Queens",
+   "lat": 40.74326,
+   "lon": -73.85929
+  },
+  {
+   "id": "cs_QN0501",
+   "name": "Maspeth",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0501",
+   "borough": "Queens",
+   "lat": 40.72309,
+   "lon": -73.90508
+  },
+  {
+   "id": "cs_QN0502",
+   "name": "Ridgewood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0502",
+   "borough": "Queens",
+   "lat": 40.7057,
+   "lon": -73.9037
+  },
+  {
+   "id": "cs_QN0503",
+   "name": "Glendale",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0503",
+   "borough": "Queens",
+   "lat": 40.70352,
+   "lon": -73.87574
+  },
+  {
+   "id": "cs_QN0504",
+   "name": "Middle Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0504",
+   "borough": "Queens",
+   "lat": 40.71923,
+   "lon": -73.87808
+  },
+  {
+   "id": "cs_QN0601",
+   "name": "Rego Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0601",
+   "borough": "Queens",
+   "lat": 40.72626,
+   "lon": -73.86343
+  },
+  {
+   "id": "cs_QN0602",
+   "name": "Forest Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0602",
+   "borough": "Queens",
+   "lat": 40.72146,
+   "lon": -73.84767
+  },
+  {
+   "id": "cs_QN0701",
+   "name": "College Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0701",
+   "borough": "Queens",
+   "lat": 40.78262,
+   "lon": -73.8399
+  },
+  {
+   "id": "cs_QN0702",
+   "name": "Whitestone-Beechhurst",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0702",
+   "borough": "Queens",
+   "lat": 40.78838,
+   "lon": -73.81089
+  },
+  {
+   "id": "cs_QN0703",
+   "name": "Bay Terrace-Clearview",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0703",
+   "borough": "Queens",
+   "lat": 40.78187,
+   "lon": -73.78761
+  },
+  {
+   "id": "cs_QN0704",
+   "name": "Murray Hill-Broadway Flushing",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0704",
+   "borough": "Queens",
+   "lat": 40.76888,
+   "lon": -73.8108
+  },
+  {
+   "id": "cs_QN0705",
+   "name": "East Flushing",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0705",
+   "borough": "Queens",
+   "lat": 40.75379,
+   "lon": -73.80805
+  },
+  {
+   "id": "cs_QN0706",
+   "name": "Queensboro Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0706",
+   "borough": "Queens",
+   "lat": 40.74314,
+   "lon": -73.81973
+  },
+  {
+   "id": "cs_QN0707",
+   "name": "Flushing-Willets Point",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0707",
+   "borough": "Queens",
+   "lat": 40.7602,
+   "lon": -73.83156
+  },
+  {
+   "id": "cs_QN0801",
+   "name": "Kew Gardens Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0801",
+   "borough": "Queens",
+   "lat": 40.72664,
+   "lon": -73.8198
+  },
+  {
+   "id": "cs_QN0802",
+   "name": "Pomonok-Electchester-Hillcrest",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0802",
+   "borough": "Queens",
+   "lat": 40.72711,
+   "lon": -73.80347
+  },
+  {
+   "id": "cs_QN0803",
+   "name": "Fresh Meadows-Utopia",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0803",
+   "borough": "Queens",
+   "lat": 40.73491,
+   "lon": -73.78625
+  },
+  {
+   "id": "cs_QN0804",
+   "name": "Jamaica Estates-Holliswood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0804",
+   "borough": "Queens",
+   "lat": 40.72072,
+   "lon": -73.77759
+  },
+  {
+   "id": "cs_QN0805",
+   "name": "Jamaica Hills-Briarwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0805",
+   "borough": "Queens",
+   "lat": 40.71188,
+   "lon": -73.80888
+  },
+  {
+   "id": "cs_QN0901",
+   "name": "Kew Gardens",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0901",
+   "borough": "Queens",
+   "lat": 40.70803,
+   "lon": -73.82877
+  },
+  {
+   "id": "cs_QN0902",
+   "name": "Richmond Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0902",
+   "borough": "Queens",
+   "lat": 40.69745,
+   "lon": -73.83274
+  },
+  {
+   "id": "cs_QN0903",
+   "name": "South Richmond Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0903",
+   "borough": "Queens",
+   "lat": 40.69132,
+   "lon": -73.82484
+  },
+  {
+   "id": "cs_QN0904",
+   "name": "Ozone Park (North)",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0904",
+   "borough": "Queens",
+   "lat": 40.68457,
+   "lon": -73.84935
+  },
+  {
+   "id": "cs_QN0905",
+   "name": "Woodhaven",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN0905",
+   "borough": "Queens",
+   "lat": 40.69141,
+   "lon": -73.85742
+  },
+  {
+   "id": "cs_QN1001",
+   "name": "South Ozone Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1001",
+   "borough": "Queens",
+   "lat": 40.6762,
+   "lon": -73.81954
+  },
+  {
+   "id": "cs_QN1002",
+   "name": "Ozone Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1002",
+   "borough": "Queens",
+   "lat": 40.67559,
+   "lon": -73.84698
+  },
+  {
+   "id": "cs_QN1003",
+   "name": "Howard Beach-Lindenwood",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1003",
+   "borough": "Queens",
+   "lat": 40.66007,
+   "lon": -73.84403
+  },
+  {
+   "id": "cs_QN1101",
+   "name": "Auburndale",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1101",
+   "borough": "Queens",
+   "lat": 40.75532,
+   "lon": -73.78604
+  },
+  {
+   "id": "cs_QN1102",
+   "name": "Bayside",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1102",
+   "borough": "Queens",
+   "lat": 40.76172,
+   "lon": -73.76758
+  },
+  {
+   "id": "cs_QN1103",
+   "name": "Douglaston-Little Neck",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1103",
+   "borough": "Queens",
+   "lat": 40.76368,
+   "lon": -73.73684
+  },
+  {
+   "id": "cs_QN1104",
+   "name": "Oakland Gardens-Hollis Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1104",
+   "borough": "Queens",
+   "lat": 40.73929,
+   "lon": -73.75458
+  },
+  {
+   "id": "cs_QN1201",
+   "name": "Jamaica",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1201",
+   "borough": "Queens",
+   "lat": 40.70403,
+   "lon": -73.79551
+  },
+  {
+   "id": "cs_QN1202",
+   "name": "South Jamaica",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1202",
+   "borough": "Queens",
+   "lat": 40.69427,
+   "lon": -73.7918
+  },
+  {
+   "id": "cs_QN1203",
+   "name": "Baisley Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1203",
+   "borough": "Queens",
+   "lat": 40.67952,
+   "lon": -73.7899
+  },
+  {
+   "id": "cs_QN1204",
+   "name": "Springfield Gardens (North)-Rochdale Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1204",
+   "borough": "Queens",
+   "lat": 40.67333,
+   "lon": -73.77204
+  },
+  {
+   "id": "cs_QN1205",
+   "name": "St. Albans",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1205",
+   "borough": "Queens",
+   "lat": 40.69325,
+   "lon": -73.76223
+  },
+  {
+   "id": "cs_QN1206",
+   "name": "Hollis",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1206",
+   "borough": "Queens",
+   "lat": 40.71186,
+   "lon": -73.76212
+  },
+  {
+   "id": "cs_QN1301",
+   "name": "Glen Oaks-Floral Park-New Hyde Park",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1301",
+   "borough": "Queens",
+   "lat": 40.74594,
+   "lon": -73.71093
+  },
+  {
+   "id": "cs_QN1302",
+   "name": "Bellerose",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1302",
+   "borough": "Queens",
+   "lat": 40.73551,
+   "lon": -73.72669
+  },
+  {
+   "id": "cs_QN1303",
+   "name": "Queens Village",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1303",
+   "borough": "Queens",
+   "lat": 40.71612,
+   "lon": -73.74177
+  },
+  {
+   "id": "cs_QN1304",
+   "name": "Cambria Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1304",
+   "borough": "Queens",
+   "lat": 40.69435,
+   "lon": -73.73553
+  },
+  {
+   "id": "cs_QN1305",
+   "name": "Laurelton",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1305",
+   "borough": "Queens",
+   "lat": 40.67591,
+   "lon": -73.7445
+  },
+  {
+   "id": "cs_QN1306",
+   "name": "Springfield Gardens (South)-Brookville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1306",
+   "borough": "Queens",
+   "lat": 40.66014,
+   "lon": -73.76143
+  },
+  {
+   "id": "cs_QN1307",
+   "name": "Rosedale",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1307",
+   "borough": "Queens",
+   "lat": 40.65902,
+   "lon": -73.73568
+  },
+  {
+   "id": "cs_QN1401",
+   "name": "Far Rockaway-Bayswater",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1401",
+   "borough": "Queens",
+   "lat": 40.60167,
+   "lon": -73.75655
+  },
+  {
+   "id": "cs_QN1402",
+   "name": "Rockaway Beach-Arverne-Edgemere",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1402",
+   "borough": "Queens",
+   "lat": 40.59156,
+   "lon": -73.79632
+  },
+  {
+   "id": "cs_QN1403",
+   "name": "Breezy Point-Belle Harbor-Rockaway Park-Broad Channel",
+   "type": "Library / community centre (example location)",
+   "nta_id": "QN1403",
+   "borough": "Queens",
+   "lat": 40.5772,
+   "lon": -73.84611
+  },
+  {
+   "id": "cs_SI0101",
+   "name": "St. George-New Brighton",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0101",
+   "borough": "Staten Island",
+   "lat": 40.64218,
+   "lon": -74.08553
+  },
+  {
+   "id": "cs_SI0102",
+   "name": "Tompkinsville-Stapleton-Clifton-Fox Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0102",
+   "borough": "Staten Island",
+   "lat": 40.62613,
+   "lon": -74.07887
+  },
+  {
+   "id": "cs_SI0103",
+   "name": "Rosebank-Shore Acres-Park Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0103",
+   "borough": "Staten Island",
+   "lat": 40.61171,
+   "lon": -74.07273
+  },
+  {
+   "id": "cs_SI0104",
+   "name": "West New Brighton-Silver Lake-Grymes Hill",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0104",
+   "borough": "Staten Island",
+   "lat": 40.62805,
+   "lon": -74.1013
+  },
+  {
+   "id": "cs_SI0105",
+   "name": "Westerleigh-Castleton Corners",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0105",
+   "borough": "Staten Island",
+   "lat": 40.61703,
+   "lon": -74.12878
+  },
+  {
+   "id": "cs_SI0106",
+   "name": "Port Richmond",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0106",
+   "borough": "Staten Island",
+   "lat": 40.63383,
+   "lon": -74.13322
+  },
+  {
+   "id": "cs_SI0107",
+   "name": "Mariner's Harbor-Arlington-Graniteville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0107",
+   "borough": "Staten Island",
+   "lat": 40.6312,
+   "lon": -74.1674
+  },
+  {
+   "id": "cs_SI0201",
+   "name": "Grasmere-Arrochar-South Beach-Dongan Hills",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0201",
+   "borough": "Staten Island",
+   "lat": 40.59354,
+   "lon": -74.08128
+  },
+  {
+   "id": "cs_SI0202",
+   "name": "New Dorp-Midland Beach",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0202",
+   "borough": "Staten Island",
+   "lat": 40.57432,
+   "lon": -74.10158
+  },
+  {
+   "id": "cs_SI0203",
+   "name": "Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0203",
+   "borough": "Staten Island",
+   "lat": 40.58968,
+   "lon": -74.12827
+  },
+  {
+   "id": "cs_SI0204",
+   "name": "New Springville-Willowbrook-Bulls Head-Travis",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0204",
+   "borough": "Staten Island",
+   "lat": 40.60374,
+   "lon": -74.17547
+  },
+  {
+   "id": "cs_SI0301",
+   "name": "Oakwood-Richmondtown",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0301",
+   "borough": "Staten Island",
+   "lat": 40.56201,
+   "lon": -74.12259
+  },
+  {
+   "id": "cs_SI0302",
+   "name": "Great Kills-Eltingville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0302",
+   "borough": "Staten Island",
+   "lat": 40.55027,
+   "lon": -74.15492
+  },
+  {
+   "id": "cs_SI0303",
+   "name": "Arden Heights-Rossville",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0303",
+   "borough": "Staten Island",
+   "lat": 40.55263,
+   "lon": -74.19692
+  },
+  {
+   "id": "cs_SI0304",
+   "name": "Annadale-Huguenot-Prince's Bay-Woodrow",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0304",
+   "borough": "Staten Island",
+   "lat": 40.5284,
+   "lon": -74.198
+  },
+  {
+   "id": "cs_SI0305",
+   "name": "Tottenville-Charleston",
+   "type": "Library / community centre (example location)",
+   "nta_id": "SI0305",
+   "borough": "Staten Island",
+   "lat": 40.52469,
+   "lon": -74.23546
+  }
+ ]
+}

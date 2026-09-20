@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="User journey and service system map for HeatSafe NYC, a heat-and-hypertension service for the NYC 2026 Climate & Health hackathon.">
+<title>HeatSafe Service Blueprint</title>
+
+<style>
+  /* Fonts vendored locally (both SIL Open Font License) so this page works offline. */
+  @font-face { font-family: "Archivo"; src: url("fonts/archivo.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+  @font-face { font-family: "Public Sans"; src: url("fonts/publicsans.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+</style>
+<style>
+  :root {
+    --ink: #0f1a1d;
+    --ink-2: #41565c;
+    --ink-3: #6b8087;
+    --ground: #f2f6f5;
+    --surface: #ffffff;
+    --surface-2: #e8f1ef;
+    --line: #d5e2df;
+    --line-strong: #b7cbc6;
+
+    --teal: #0e7c74;
+    --teal-deep: #0a5b55;
+    --mint: #96d8d0;
+    --sage: #a9d46a;
+    --sky: #2f97c9;
+    --amber: #d9891f;
+    --coral: #d6503a;
+
+    --band-source: #eaf4ee;
+    --band-engine: #e6f1f4;
+    --band-face: #fdf3e4;
+    --band-people: #f3eef8;
+
+    --shadow: 0 1px 2px rgba(15, 26, 29, .05), 0 12px 28px rgba(15, 26, 29, .07);
+    --radius: 16px;
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #eaf2f1;
+      --ink-2: #a9c0be;
+      --ink-3: #7e9a98;
+      --ground: #0c1517;
+      --surface: #14201f;
+      --surface-2: #1b2b29;
+      --line: #27403d;
+      --line-strong: #37544f;
+
+      --teal: #6fd0c4;
+      --teal-deep: #a7e6dc;
+      --mint: #2c6d66;
+      --sage: #8dbd5a;
+      --sky: #6ec3e8;
+      --amber: #e9a94f;
+      --coral: #ef7d67;
+
+      --band-source: #16241d;
+      --band-engine: #132328;
+      --band-face: #241e14;
+      --band-people: #1e1a26;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 14px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #eaf2f1; --ink-2: #a9c0be; --ink-3: #7e9a98;
+    --ground: #0c1517; --surface: #14201f; --surface-2: #1b2b29;
+    --line: #27403d; --line-strong: #37544f;
+    --teal: #6fd0c4; --teal-deep: #a7e6dc; --mint: #2c6d66; --sage: #8dbd5a;
+    --sky: #6ec3e8; --amber: #e9a94f; --coral: #ef7d67;
+    --band-source: #16241d; --band-engine: #132328; --band-face: #241e14; --band-people: #1e1a26;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 14px 30px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-block: 40px 72px; padding-left: 20px; padding-right: 20px; }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2rem, 5.4vw, 3.1rem); line-height: 1.02; }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); line-height: 1.1; }
+  h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--display); font-size: .74rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .16em; color: var(--teal);
+  }
+  .lede { color: var(--ink-2); max-width: 62ch; font-size: 1.06rem; }
+
+  header.page { display: grid; gap: 14px; padding-bottom: 28px; border-bottom: 2px solid var(--line-strong); }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .82rem; color: var(--ink-3); }
+  .meta-row b { color: var(--ink-2); font-weight: 600; }
+
+  section { margin-top: 56px; }
+  .sec-head { display: grid; gap: 8px; margin-bottom: 22px; }
+  .sec-head p { color: var(--ink-2); max-width: 70ch; }
+
+  /* ---------- status chips ---------- */
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .chip-built { color: var(--teal-deep); background: color-mix(in srgb, var(--mint) 35%, transparent); }
+  .chip-demo { color: var(--amber); background: color-mix(in srgb, var(--amber) 16%, transparent); }
+  .chip-planned { color: var(--ink-3); background: color-mix(in srgb, var(--ink-3) 14%, transparent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-top: 14px; font-size: .84rem; color: var(--ink-2); }
+
+  /* ---------- journey ---------- */
+  .scroller { overflow-x: auto; padding-bottom: 8px; }
+  .journey { display: grid; grid-template-columns: 132px repeat(7, minmax(190px, 1fr)); min-width: 1180px; }
+  .journey > * { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .rowhead {
+    font-family: var(--display); font-size: .72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--ink-3); position: sticky; left: 0;
+    background: var(--ground); border-right: 1px solid var(--line-strong); z-index: 2;
+  }
+  .stage-head { background: var(--surface); border-top: 4px solid var(--teal); border-radius: 12px 12px 0 0; }
+  .stage-num { font-family: var(--display); font-size: .72rem; font-weight: 700; color: var(--teal); letter-spacing: .1em; }
+  .stage-head h3 { margin-top: 2px; }
+  .stage-head .when { font-size: .78rem; color: var(--ink-3); margin-top: 3px; }
+  .cell { font-size: .88rem; color: var(--ink-2); background: var(--surface); }
+  .cell.patient { background: color-mix(in srgb, var(--mint) 16%, var(--surface)); color: var(--ink); }
+  .cell.care { background: color-mix(in srgb, var(--sky) 10%, var(--surface)); }
+  .cell.system { background: var(--surface); font-family: var(--body); }
+  .cell.risk { background: color-mix(in srgb, var(--coral) 8%, var(--surface)); font-size: .82rem; }
+  .cell b { color: var(--ink); font-weight: 600; }
+  .cell ul { margin: 0; padding-left: 16px; }
+  .cell li + li { margin-top: 4px; }
+  .tiny { font-size: .74rem; color: var(--ink-3); display: block; margin-top: 6px; }
+  .hint { font-size: .8rem; color: var(--ink-3); margin-top: 10px; }
+
+  /* ---------- system map ---------- */
+  .bands { display: grid; gap: 0; }
+  .band {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+    display: grid; grid-template-columns: 148px 1fr; gap: 18px; align-items: start;
+  }
+  .band + .arrow { justify-self: center; }
+  .band-label { display: grid; gap: 4px; }
+  .band-label .t { font-family: var(--display); font-weight: 700; font-size: .95rem; }
+  .band-label .s { font-size: .78rem; color: var(--ink-3); }
+  .band-sources { background: var(--band-source); }
+  .band-engine { background: var(--band-engine); }
+  .band-face { background: var(--band-face); }
+  .band-people { background: var(--band-people); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 10px; }
+  .tile {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px;
+    display: grid; gap: 5px; box-shadow: var(--shadow);
+  }
+  .tile .n { font-weight: 600; font-size: .92rem; line-height: 1.25; }
+  .tile .d { font-size: .78rem; color: var(--ink-3); line-height: 1.45; }
+  .tile.keystone { border-color: var(--teal); border-width: 2px; }
+  .arrow {
+    display: grid; place-items: center; gap: 2px; padding: 8px 0;
+    font-size: .74rem; color: var(--ink-3); text-align: center;
+  }
+  .arrow::before { content: "↓"; font-size: 1.1rem; color: var(--line-strong); line-height: 1; }
+
+  /* ---------- matrix ---------- */
+  .two-col { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
+  .panel h3 { margin-bottom: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: .85rem; font-variant-numeric: tabular-nums; }
+  th, td { padding: 7px 9px; text-align: left; border-bottom: 1px solid var(--line); }
+  thead th { font-family: var(--display); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+  td.p-routine { color: var(--ink-3); }
+  td.p-targeted { color: var(--amber); font-weight: 600; }
+  td.p-priority { color: var(--coral); font-weight: 700; }
+  .domains { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .domains li { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: baseline; font-size: .88rem; }
+  .domains .k { font-family: var(--display); font-weight: 700; color: var(--teal); }
+  .domains .pts { font-size: .76rem; color: var(--ink-3); }
+
+  .gaps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .gap { border-left: 3px solid var(--coral); background: var(--surface); border-radius: 0 12px 12px 0; padding: 12px 14px; }
+  .gap h3 { font-size: .95rem; margin-bottom: 4px; }
+  .gap p { font-size: .84rem; color: var(--ink-2); }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-3); display: grid; gap: 6px; }
+
+  @media (max-width: 760px) {
+    .two-col { grid-template-columns: 1fr; }
+    .band { grid-template-columns: 1fr; gap: 12px; }
+  }
+</style>
+<style>
+  /* Local copy: the artifact host normally supplies these basics. */
+  html { -webkit-text-size-adjust: 100%; }
+  img { max-width: 100%; }
+  @media print {
+    body { background: #fff; }
+    .scroller { overflow: visible; }
+    .journey { min-width: 0; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="page">
+    <p class="eyebrow">Climate &amp; Health Hackathon · NYC 2026</p>
+    <h1>HeatSafe NYC: how the service works</h1>
+    <p class="lede">A heat-and-hypertension service for NYC. Two maps: what a patient and their care team live through across a heat episode, and the system that has to exist behind it.</p>
+    <div class="meta-row">
+      <span><b>Scope</b> adults with hypertension</span>
+      <span><b>Unit</b> one patient, one forecast date</span>
+      <span><b>Model</b> hypertension_heat_outreach v0.1.0</span>
+      <span><b>Status</b> prototype, not clinically validated</span>
+    </div>
+    <div class="legend">
+      <span class="chip chip-built">Built in the demo</span>
+      <span class="chip chip-demo">Synthetic or placeholder</span>
+      <span class="chip chip-planned">Planned, not built</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Map 1</p>
+      <h2>User journey across one heat episode</h2>
+      <p>The same seven days, read four ways: what the patient does, what the care team does, what the system does underneath, and where the service can fail. Stages 4–6 are the day the heat peaks.</p>
+    </div>
+
+    <div class="scroller">
+      <div class="journey">
+        <div class="rowhead" style="border-top:0"></div>
+        <div class="stage-head"><span class="stage-num">01</span><h3>Enrol &amp; consent</h3><p class="when">Routine clinic visit</p></div>
+        <div class="stage-head"><span class="stage-num">02</span><h3>Build the profile</h3><p class="when">Same visit, 10 min</p></div>
+        <div class="stage-head"><span class="stage-num">03</span><h3>Forecast turns</h3><p class="when">2–3 days ahead</p></div>
+        <div class="stage-head"><span class="stage-num">04</span><h3>Morning of the heat</h3><p class="when">Peak day, 7am</p></div>
+        <div class="stage-head"><span class="stage-num">05</span><h3>Getting through the day</h3><p class="when">11am–6pm</p></div>
+        <div class="stage-head"><span class="stage-num">06</span><h3>Something feels wrong</h3><p class="when">Any time</p></div>
+        <div class="stage-head"><span class="stage-num">07</span><h3>After the episode</h3><p class="when">Days later</p></div>
+
+        <div class="rowhead">Patient</div>
+        <div class="cell patient">Hears about the heat programme at a blood-pressure visit. Decides whether high-risk days may be shared with the clinic automatically.</div>
+        <div class="cell patient">Answers questions they know best: AC at home, who checks on them, whether they work or travel in the heat.</div>
+        <div class="cell patient">Carries on as normal. May get a heads-up that hot days are coming.</div>
+        <div class="cell patient"><b>Opens the app.</b> Sees today's level, a note from the doctor, the steps that apply to them, and where the nearest cool space is.</div>
+        <div class="cell patient">Moves the afternoon indoors, drinks water, skips the midday walk. Or can't — the apartment is hot and there is nowhere to go.</div>
+        <div class="cell patient">Feels dizzy. Submits a ticket, or in an emergency is told to call 911 straight away.</div>
+        <div class="cell patient">Gets a call or a note back. Updates their profile if something changed — a new AC unit, a new number.</div>
+
+        <div class="rowhead">Care team</div>
+        <div class="cell care">Explains what gets shared and what doesn't. Records consent with a date.</div>
+        <div class="cell care">Confirms the medication list is complete — the score depends on it.</div>
+        <div class="cell care">Sees the outreach queue fill for the coming date. Plans the day's calls.</div>
+        <div class="cell care">Reviews priority patients: rules that fired, current medicines flagged by tier, source of each flag.</div>
+        <div class="cell care">Calls the patients flagged for outreach, starting with those 65+ and those with no cooling.</div>
+        <div class="cell care">Reads the ticket beside the risk picture. Acknowledges, calls, logs a note the patient can see.</div>
+        <div class="cell care">Reviews what happened. Adjusts the heat plan at the next visit.</div>
+
+        <div class="rowhead">System</div>
+        <div class="cell system">Stores consent with its date and scope.<span class="tiny">Patient record</span></div>
+        <div class="cell system">Builds the vulnerability profile: five domains, 0–2 points each.<span class="tiny">V = 0–10</span></div>
+        <div class="cell system">Pulls the official heat level per location and date; recomputes when it changes.<span class="tiny">H = 0–4</span></div>
+        <div class="cell system">Matches H against V's band in the outreach matrix. Never adds them.<span class="tiny">routine · targeted · priority</span></div>
+        <div class="cell system">Selects fixed action IDs for the priority level, then drops any that don't apply to this patient.<span class="tiny">No invented advice</span></div>
+        <div class="cell system">Routes symptoms <b>before</b> scoring: emergency signs get a fixed 911 message, other symptoms a review route.<span class="tiny">Separate from priority</span></div>
+        <div class="cell system">Stores the input snapshot, source version, rule version and any reviewer change.<span class="tiny">Audit trail</span></div>
+
+        <div class="rowhead">Data &amp; evidence</div>
+        <div class="cell">Consent record<span class="tiny">Patient-facing, revocable</span></div>
+        <div class="cell">Clinical record · medication list · drug-heat knowledge base<span class="tiny">Pharmacist review required</span></div>
+        <div class="cell">Official NWS HeatRisk, by location and date<span class="tiny">Not inferred from temperature</span></div>
+        <div class="cell">CDC heat-health guidance, matched to the patient's own medicines<span class="tiny">Approved text only</span></div>
+        <div class="cell">Cooling-space locations, opening hours, transport<span class="tiny">NYC finder · 311</span></div>
+        <div class="cell">Clinician-approved symptom pathway<span class="tiny">Not comprehensive triage</span></div>
+        <div class="cell">Outcome measures: calls made, time to acknowledge, heat-related ED visits<span class="tiny">Validation plan</span></div>
+
+        <div class="rowhead">Where it breaks</div>
+        <div class="cell risk">Consent obtained once, then never revisited. People change their minds.</div>
+        <div class="cell risk">An incomplete medication list leaves the score uncertain — and uncertainty must be shown, not hidden.</div>
+        <div class="cell risk">No forecast means no priority. The service has to stay useful with the feed down.</div>
+        <div class="cell risk">The person most at risk may have no smartphone, no data, or no English.</div>
+        <div class="cell risk">Advice a patient cannot act on: no AC, no transport, no cool space open nearby.</div>
+        <div class="cell risk">A dashboard flag is not proof anyone read it. Delivery must be tracked separately.</div>
+        <div class="cell risk">Alert fatigue. Too many days flagged and the next one gets ignored.</div>
+      </div>
+    </div>
+    <p class="hint">Scroll the table sideways to follow all seven stages.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Map 2</p>
+      <h2>Service system map</h2>
+      <p>Everything the journey above rests on, from public data down to the people who act. Arrows show what moves between the layers.</p>
+    </div>
+
+    <div class="bands">
+      <div class="band band-sources">
+        <div class="band-label"><span class="t">Sources &amp; authorities</span><span class="s">Outside the team, not controllable</span></div>
+        <div class="tiles">
+          <div class="tile"><span class="n">NWS HeatRisk</span><span class="d">Official daily heat level 0–4 per location. <span class="chip chip-demo">synthetic</span></span></div>
+          <div class="tile"><span class="n">CDC heat &amp; health</span><span class="d">Patient advice, symptoms, medication guidance. <span class="chip chip-built">loaded</span></span></div>
+          <div class="tile"><span class="n">Drug-heat knowledge base</span><span class="d">17 classes, RED/YELLOW/GREEN tiers, team-compiled. <span class="chip chip-built">loaded</span></span></div>
+          <div class="tile"><span class="n">NYC neighbourhood data</span><span class="d">2020 NTA boundaries; HVI and CDC PLACES as context. <span class="chip chip-built">boundaries</span></span></div>
+          <div class="tile"><span class="n">Cooling spaces</span><span class="d">NYC Cooling Center Finder, 311. Opens during emergencies. <span class="chip chip-demo">examples</span></span></div>
+          <div class="tile"><span class="n">Clinical record</span><span class="d">Conditions, medicines, contacts. <span class="chip chip-demo">synthetic patients</span></span></div>
+        </div>
+      </div>
+
+      <div class="arrow">forecasts · guidance · patient records</div>
+
+      <div class="band band-engine">
+        <div class="band-label"><span class="t">Assessment engine</span><span class="s">Deterministic rules, one source of truth</span></div>
+        <div class="tiles">
+          <div class="tile keystone"><span class="n">H · heat severity</span><span class="d">Official level 0–4, by location and forecast date. Missing means unknown, not zero.</span></div>
+          <div class="tile keystone"><span class="n">V · vulnerability</span><span class="d">Five domains, 0–2 each: clinical, medication, cooling, exposure, support.</span></div>
+          <div class="tile keystone"><span class="n">Outreach matrix</span><span class="d">H against V's band → routine, targeted or priority. H and V are never summed.</span></div>
+          <div class="tile"><span class="n">Symptom routing</span><span class="d">Runs first. Emergency signs bypass scoring entirely.</span></div>
+          <div class="tile"><span class="n">Unknown handling</span><span class="d">Returns a score range; asks for information when the answer could change.</span></div>
+          <div class="tile"><span class="n">Audit record</span><span class="d">Inputs, source version, rule version, reviewer changes. <span class="chip chip-planned">planned</span></span></div>
+        </div>
+      </div>
+
+      <div class="arrow">priority · reasons · approved actions</div>
+
+      <div class="band band-face">
+        <div class="band-label"><span class="t">What people touch</span><span class="s">Front stage</span></div>
+        <div class="tiles">
+          <div class="tile"><span class="n">Patient page</span><span class="d">Today's level, doctor's note, medicines in heat, steps, 7 days, map. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">My profile</span><span class="d">Patient edits contact details, cooling and support answers, consent. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">Ticket to the care team</span><span class="d">Symptoms and a note; emergency signs get the 911 message. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">Outreach queue</span><span class="d">Ranked patients with domain breakdown, flagged medicines, missing data. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">Patient chart</span><span class="d">Full record: notes, labs, appointments, heat history. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">Methods · Evidence · Ethics</span><span class="d">Live rules, validation status, limits and consent model. <span class="chip chip-built">built</span></span></div>
+          <div class="tile"><span class="n">Phone call</span><span class="d">The channel that reaches people without smartphones. <span class="chip chip-planned">planned</span></span></div>
+          <div class="tile"><span class="n">SMS / translated messages</span><span class="d">Spanish and Chinese first. <span class="chip chip-planned">planned</span></span></div>
+        </div>
+      </div>
+
+      <div class="arrow">calls · check-ins · tickets · notes back</div>
+
+      <div class="band band-people">
+        <div class="band-label"><span class="t">People</span><span class="s">Who acts, and who is acted on</span></div>
+        <div class="tiles">
+          <div class="tile"><span class="n">Patient</span><span class="d">Adult with hypertension. Three synthetic personas: low, medium and high need.</span></div>
+          <div class="tile"><span class="n">Check-in person</span><span class="d">Family, neighbour or case worker. Their absence is a scored need.</span></div>
+          <div class="tile"><span class="n">Primary care physician</span><span class="d">Reviews priority cases, decides clinical action.</span></div>
+          <div class="tile"><span class="n">Nurse care manager</span><span class="d">Makes the outreach calls, logs what happened.</span></div>
+          <div class="tile"><span class="n">Pharmacist</span><span class="d">Signs off the drug-heat list. The engine can't ship without this.</span></div>
+          <div class="tile"><span class="n">Emergency services</span><span class="d">911 for confusion, seizure or loss of consciousness.</span></div>
+        </div>
+      </div>
+
+      <div class="arrow">governs everything above</div>
+
+      <div class="band">
+        <div class="band-label"><span class="t">Governance</span><span class="s">What makes it safe to use</span></div>
+        <div class="tiles">
+          <div class="tile"><span class="n">Clinical release gate</span><span class="d">Medication rules and symptom pathways reviewed before any patient sees them.</span></div>
+          <div class="tile"><span class="n">Consent</span><span class="d">Automatic sharing only with it; without it the patient is prompted instead.</span></div>
+          <div class="tile"><span class="n">Data minimisation</span><span class="d">Neighbourhood, not address. Drug classes, not the whole chart.</span></div>
+          <div class="tile"><span class="n">Stated limits</span><span class="d">Not diagnosis, not medication changes, not a probability of illness.</span></div>
+          <div class="tile"><span class="n">Validation plan</span><span class="d">Weights and thresholds are provisional until tested against outcomes.</span></div>
+          <div class="tile"><span class="n">Delivery tracking</span><span class="d">A flag on a screen is not evidence anyone was reached. <span class="chip chip-planned">planned</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">The decision at the centre</p>
+      <h2>Two inputs, one assessment</h2>
+      <p>Everything in both maps converges here. H describes the weather; V describes the person. They meet in a matrix and are never added together.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <h3>Outreach matrix</h3>
+        <table>
+          <thead>
+            <tr><th>Official HeatRisk</th><th>V 0–2</th><th>V 3–5</th><th>V 6–10</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0 · Little to none</td><td class="p-routine">Routine</td><td class="p-routine">Routine</td><td class="p-routine">Routine</td></tr>
+            <tr><td>1 · Minor</td><td class="p-routine">Routine</td><td class="p-targeted">Targeted</td><td class="p-targeted">Targeted</td></tr>
+            <tr><td>2 · Moderate</td><td class="p-targeted">Targeted</td><td class="p-targeted">Targeted</td><td class="p-priority">Priority</td></tr>
+            <tr><td>3 · Major</td><td class="p-targeted">Targeted</td><td class="p-priority">Priority</td><td class="p-priority">Priority</td></tr>
+            <tr><td>4 · Extreme</td><td class="p-priority">Priority</td><td class="p-priority">Priority</td><td class="p-priority">Priority</td></tr>
+          </tbody>
+        </table>
+        <p class="tiny">Routine: maintain the heat plan. Targeted: personalised prevention and support checks. Priority: flag for care-team review before heat exposure — not an emergency diagnosis.</p>
+      </div>
+
+      <div class="panel">
+        <h3>V · five domains, 0–2 points each</h3>
+        <ul class="domains">
+          <li><span class="k">A</span><span>Clinical: age 65+, heart failure, CKD, diabetes, past heat illness</span><span class="pts">cap 2</span></li>
+          <li><span class="k">B</span><span>Medication: 2 for a diuretic with an ACE inhibitor, ARB or ARNI; 1 for any heat-relevant drug</span><span class="pts">highest only</span></li>
+          <li><span class="k">C</span><span>Cooling: reliable at home, alternative only, or neither</span><span class="pts">choose one</span></li>
+          <li><span class="k">D</span><span>Exposure: heat exposure without breaks, or strenuous activity in heat</span><span class="pts">choose one</span></li>
+          <li><span class="k">E</span><span>Support: no reliable check-in person; needs help to follow the plan</span><span class="pts">add both</span></li>
+        </ul>
+        <p class="tiny">Maximum 10 points. Not a percentage, and not a probability of illness. Hypertension is the eligibility criterion, not a scored factor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Honest gaps</p>
+      <h2>What would have to be true in the real world</h2>
+    </div>
+    <div class="gaps">
+      <div class="gap"><h3>A live HeatRisk feed</h3><p>The demo uses synthetic heat levels. The real product needs verified ingestion of the official product, with its version and timestamp stored.</p></div>
+      <div class="gap"><h3>Pharmacist sign-off</h3><p>Every drug-heat flag currently says UNREVIEWED. Nothing reaches a patient until that changes.</p></div>
+      <div class="gap"><h3>Weights that have been tested</h3><p>Points, caps and matrix cells are design choices informed by evidence, not calibrated against outcomes.</p></div>
+      <div class="gap"><h3>A way to reach everyone</h3><p>The people at highest risk are least likely to be reachable through an app. Phone and translated messages are not optional extras.</p></div>
+      <div class="gap"><h3>Somewhere cool to send people</h3><p>Advice only works if a cool space is open, reachable and free. That is a city partnership, not a feature.</p></div>
+      <div class="gap"><h3>Proof of delivery</h3><p>Track that an alert was received and acted on, separately from it being displayed.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>HeatSafe NYC · prototype for the NYC 2026 Climate &amp; Health hackathon. All patients, charts and heat levels shown in the demo are synthetic.</p>
+    <p>Not medical advice. Not for diagnosis, medication changes, individual illness probability or autonomous triage.</p>
+  </footer>
+</div>
+
+</body>
+</html>

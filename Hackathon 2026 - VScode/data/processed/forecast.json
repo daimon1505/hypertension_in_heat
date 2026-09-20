@@ -1,0 +1,56 @@
+{
+ "location_id": "nyc-central-park",
+ "location_name": "Central Park, New York, NY",
+ "latitude": 40.7823,
+ "longitude": -73.9655,
+ "source": "National Weather Service (api.weather.gov)",
+ "source_url": "https://api.weather.gov/gridpoints/OKX/34,45/forecast",
+ "grid": "OKX/34,45",
+ "retrieved_at": "2026-09-20T15:44:39+00:00",
+ "data_mode": "cached",
+ "note": "Real NWS forecast, fetched at build time and cached in this file. TODO: the model definition asks for official NWS HeatRisk (0-4) per location and date; this file carries temperatures only.",
+ "days": [
+  {
+   "date": "2026-09-20",
+   "tmax": 69,
+   "tmin": 60,
+   "summary": "Rain"
+  },
+  {
+   "date": "2026-09-21",
+   "tmax": 68,
+   "tmin": 58,
+   "summary": "Slight Chance Light Rain then Mostly Cloudy"
+  },
+  {
+   "date": "2026-09-22",
+   "tmax": 63,
+   "tmin": 53,
+   "summary": "Chance Rain Showers"
+  },
+  {
+   "date": "2026-09-23",
+   "tmax": 64,
+   "tmin": 53,
+   "summary": "Slight Chance Rain Showers"
+  },
+  {
+   "date": "2026-09-24",
+   "tmax": 64,
+   "tmin": 53,
+   "summary": "Chance Rain Showers"
+  },
+  {
+   "date": "2026-09-25",
+   "tmax": 66,
+   "tmin": 55,
+   "summary": "Chance Rain Showers"
+  },
+  {
+   "date": "2026-09-26",
+   "tmax": 69,
+   "tmin": 56,
+   "summary": "Slight Chance Rain Showers"
+  }
+ ]
+}

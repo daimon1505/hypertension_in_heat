@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HeatSafe — user journey slide</title>
+<style>
+  /* Slide source for Demostration/user-journey-map.jpg — 1920 x 1080.
+     Kept deliberately short: a judge should be able to read the whole slide in about 15 seconds.
+     Edit this file, then re-run:  python3 scripts/make_slides.py  */
+  @font-face { font-family: "Archivo"; src: url("fonts/archivo.woff2") format("woff2"); font-weight: 400 700; }
+  @font-face { font-family: "Public Sans"; src: url("fonts/publicsans.woff2") format("woff2"); font-weight: 400 700; }
+
+  :root {
+    --ink: #0f1a1d; --ink-2: #41565c; --ink-3: #74898f;
+    --ground: #f2f6f5; --surface: #ffffff; --line: #d5e2df; --line-strong: #b7cbc6;
+    --teal: #0e7c74; --teal-deep: #0a5b55; --mint: #96d8d0;
+    --sky: #2f97c9; --amber: #d9891f; --coral: #d6503a;
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; width: 1920px; height: 1080px; overflow: hidden;
+    background: var(--ground); color: var(--ink); font: 400 20px/1.4 var(--body);
+    -webkit-font-smoothing: antialiased;
+    display: grid; grid-template-rows: auto 1fr auto; padding: 54px 60px 40px;
+  }
+  header { padding-bottom: 30px; }
+  .eyebrow { font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin: 0; }
+  h1 { font-family: var(--display); font-size: 58px; letter-spacing: -0.025em; margin: 6px 0 0; }
+  .sub { color: var(--ink-2); font-size: 24px; margin: 10px 0 0; }
+
+  .grid {
+    display: grid; grid-template-columns: 130px repeat(6, 1fr); gap: 10px;
+    align-content: space-between;
+  }
+  .stage { background: var(--surface); border-radius: 16px 16px 0 0; border-top: 6px solid var(--teal); padding: 16px 18px 18px; }
+  .stage .n { font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: .14em; color: var(--teal); }
+  .stage h2 { font-family: var(--display); font-size: 27px; margin: 4px 0 0; letter-spacing: -0.015em; line-height: 1.1; }
+
+  .rowhead {
+    font-family: var(--display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--ink-3); display: flex; align-items: center; padding-right: 14px;
+    border-right: 2px solid var(--line-strong);
+  }
+  .cell { padding: 20px 20px; font-size: 23px; line-height: 1.3; border-radius: 12px; display: flex; align-items: center; }
+  .r-patient { background: color-mix(in srgb, var(--mint) 26%, var(--surface)); font-weight: 500; }
+  .r-care { background: color-mix(in srgb, var(--sky) 13%, var(--surface)); color: var(--ink-2); }
+  .r-system { background: var(--surface); color: var(--ink-2); font-size: 21px; }
+  .r-system b { font-family: var(--display); color: var(--teal-deep); font-weight: 700; }
+
+  .feel { grid-column: 2 / -1; height: 96px; position: relative; }
+  .feel svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .feel .labels { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(6, 1fr); align-items: end; }
+  .feel .labels span { font-size: 18px; color: var(--ink-3); text-align: center; }
+  .feelhead {
+    font-family: var(--display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--ink-3); display: flex; align-items: flex-end; padding: 0 14px 6px 0; border-right: 2px solid var(--line-strong);
+  }
+
+  footer { display: flex; justify-content: space-between; align-items: center; gap: 40px; font-size: 19px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; }
+  footer b { color: var(--coral); font-weight: 700; }
+</style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">HeatSafe NYC · Map 1</p>
+    <h1>User journey across one heat episode</h1>
+    <p class="sub">One patient with hypertension, one hot week, and the care team around them.</p>
+  </header>
+
+  <div class="grid">
+    <div></div>
+    <div class="stage"><span class="n">01</span><h2>Enrol</h2></div>
+    <div class="stage"><span class="n">02</span><h2>Build profile</h2></div>
+    <div class="stage"><span class="n">03</span><h2>Heat forecast</h2></div>
+    <div class="stage"><span class="n">04</span><h2>Peak morning</h2></div>
+    <div class="stage"><span class="n">05</span><h2>Through the day</h2></div>
+    <div class="stage"><span class="n">06</span><h2>Follow-up</h2></div>
+
+    <div class="rowhead">Patient</div>
+    <div class="cell r-patient">Joins at a blood-pressure visit</div>
+    <div class="cell r-patient">Answers: AC? Who checks on me?</div>
+    <div class="cell r-patient">Hears hot days are coming</div>
+    <div class="cell r-patient">Opens the app: today's level and steps</div>
+    <div class="cell r-patient">Stays cool — or sends a ticket</div>
+    <div class="cell r-patient">Gets a call and a note back</div>
+
+    <div class="rowhead">Care team</div>
+    <div class="cell r-care">Records consent</div>
+    <div class="cell r-care">Confirms the medicine list</div>
+    <div class="cell r-care">Outreach queue fills</div>
+    <div class="cell r-care">Reviews priority patients</div>
+    <div class="cell r-care">Calls 65+ and no-AC first</div>
+    <div class="cell r-care">Updates the heat plan</div>
+
+    <div class="rowhead">System</div>
+    <div class="cell r-system">Consent stored with its date</div>
+    <div class="cell r-system"><span>Vulnerability <b>V = 0–10</b></span></div>
+    <div class="cell r-system"><span>Official heat <b>H = 0–4</b></span></div>
+    <div class="cell r-system"><b>H × V → priority</b></div>
+    <div class="cell r-system">Symptoms routed first</div>
+    <div class="cell r-system">Audit trail kept</div>
+
+    <div class="feelhead">How it feels</div>
+    <div class="feel">
+      <svg viewBox="0 0 1200 96" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="100,66 300,62 500,44 700,18 900,28 1100,68"
+                  fill="none" stroke="#d6503a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+        <circle cx="100" cy="66" r="8" fill="#0e7c74"/><circle cx="300" cy="62" r="8" fill="#0e7c74"/>
+        <circle cx="500" cy="44" r="8" fill="#d9891f"/><circle cx="700" cy="18" r="9" fill="#d6503a"/>
+        <circle cx="900" cy="28" r="8" fill="#d9891f"/><circle cx="1100" cy="68" r="8" fill="#0e7c74"/>
+      </svg>
+      <div class="labels">
+        <span>willing</span><span>answering</span><span>aware</span>
+        <span>worried</span><span>coping, or stuck</span><span>looked after</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div><b>Known gaps</b> &nbsp;no live heat feed yet · drug flags await pharmacist sign-off · reaching people without a smartphone</div>
+    <div>Prototype · synthetic data · not medical advice</div>
+  </footer>
+</body>
+</html>

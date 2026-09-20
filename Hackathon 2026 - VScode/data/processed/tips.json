@@ -1,0 +1,135 @@
+{
+ "reviewed_by": "UNREVIEWED — wording drafted from the CDC page below; clinician review pending",
+ "source": {
+  "label": "CDC — About Heat and Your Health",
+  "url": "https://www.cdc.gov/heat-health/about/index.html",
+  "page_updated": "July 20, 2026",
+  "accessed": "2026-09-19"
+ },
+ "consequences": [
+  {
+   "icon": "droplet",
+   "phrase": "Dehydration",
+   "detail": "Hot days dry your body out faster."
+  },
+  {
+   "icon": "dizzy",
+   "phrase": "Dizzy spells",
+   "detail": "You can feel faint when you stand up."
+  },
+  {
+   "icon": "heart",
+   "phrase": "Heart works harder",
+   "detail": "Your heart pumps more to cool you down."
+  },
+  {
+   "icon": "salt",
+   "phrase": "Salt imbalance",
+   "detail": "Some medicines change your blood salts in heat."
+  },
+  {
+   "icon": "brain",
+   "phrase": "Confusion",
+   "detail": "A warning sign that your body is too hot."
+  },
+  {
+   "icon": "emergency",
+   "phrase": "Heat stroke",
+   "detail": "A medical emergency. Call 911."
+  }
+ ],
+ "symptoms": [
+  "Muscle cramping",
+  "Unusually heavy sweating",
+  "Shortness of breath",
+  "Dizziness",
+  "Headache",
+  "Weakness",
+  "Nausea"
+ ],
+ "actions": {
+  "stay_cool": [
+   {
+    "icon": "ac",
+    "phrase": "Find air conditioning",
+    "detail": "Use AC at home, or go to a cool public place such as a library."
+   },
+   {
+    "icon": "sun",
+    "phrase": "Stay in the shade",
+    "detail": "If you are outside, take breaks and keep out of the sun."
+   },
+   {
+    "icon": "clock",
+    "phrase": "Avoid the midday heat",
+    "detail": "Do outdoor things early in the morning or in the evening."
+   },
+   {
+    "icon": "fan",
+    "phrase": "Fans below 90°F only",
+    "detail": "Above 90°F a fan can make your body hotter, not cooler."
+   }
+  ],
+  "stay_hydrated": [
+   {
+    "icon": "bottle",
+    "phrase": "Carry a water bottle",
+    "detail": "Drink and refill it through the day."
+   },
+   {
+    "icon": "nodrink",
+    "phrase": "Go easy on alcohol",
+    "detail": "Also limit very sugary or salty drinks and caffeine."
+   },
+   {
+    "icon": "urine",
+    "phrase": "Check your urine colour",
+    "detail": "Light yellow or clear usually means you are drinking enough."
+   }
+  ],
+  "medicines": [
+   {
+    "icon": "pill",
+    "phrase": "Keep taking your medicines",
+    "detail": "Never stop or change them without talking to your doctor."
+   },
+   {
+    "icon": "thermometer",
+    "phrase": "Store them out of the heat",
+    "detail": "Some medicines must be kept cool."
+   },
+   {
+    "icon": "power",
+    "phrase": "Plan for power cuts",
+    "detail": "Know what to do about fridge medicines and electrical devices."
+   }
+  ],
+  "check_ins": [
+   {
+    "icon": "phone",
+    "phrase": "Check on each other",
+    "detail": "Call family, friends and neighbours, especially anyone who lives alone."
+   }
+  ]
+ },
+ "emergency": {
+  "icon": "emergency",
+  "phrase": "Call 911 now",
+  "detail": "If you feel confused, faint, or very weak, this is an emergency."
+ },
+ "resources": [
+  {
+   "label": "CDC — Heat and your health",
+   "url": "https://www.cdc.gov/heat-health/about/index.html"
+  },
+  {
+   "label": "NYC Cooling Center Finder",
+   "url": "https://finder.nyc.gov/coolingcenters"
+  },
+  {
+   "label": "211 New York — find local help",
+   "url": "https://www.211nys.org/"
+  }
+ ],
+ "disclaimer": "This is a hackathon demo, not medical advice. Do not stop or change any medicine without talking to your care team."
+}

@@ -1,0 +1,314 @@
+{
+  "id": "patient1",
+  "synthetic": true,
+  "sample_persona": true,
+  "review_status": "SAMPLE persona drafted by Claude Code — team to confirm; clinical review pending",
+  "display_name": "Maria Santos",
+  "age": 58,
+  "sex": "Female",
+  "conditions": [
+    "Hypertension",
+    "High cholesterol"
+  ],
+  "medications": [
+    {
+      "name": "Hydrochlorothiazide (HCTZ)",
+      "dose": "25 mg by mouth every morning",
+      "class_id": "diuretic",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2021-06-02"
+    },
+    {
+      "name": "Atorvastatin",
+      "dose": "20 mg by mouth at bedtime",
+      "class_id": "statin",
+      "prescriber": "Dr. A. Rivera (Primary care)",
+      "start_date": "2022-01-15"
+    }
+  ],
+  "heat_profile": {
+    "has_ac": true,
+    "lives_alone": true,
+    "mobility": "Walks independently; takes the subway"
+  },
+  "locations": [
+    {
+      "id": "home",
+      "label": "Home",
+      "type": "home",
+      "nta_id": "MN0702",
+      "address": "210 W 89th St (fictional)"
+    },
+    {
+      "id": "pharmacy",
+      "label": "Pharmacy",
+      "type": "pharmacy",
+      "nta_id": "MN0903",
+      "address": "Sugar Hill Pharmacy (fictional)"
+    },
+    {
+      "id": "clinic",
+      "label": "Clinic",
+      "type": "clinic",
+      "nta_id": "MN0603",
+      "address": "Maple Street Clinic (fictional)"
+    },
+    {
+      "id": "work",
+      "label": "Work",
+      "type": "work",
+      "nta_id": "MN0203",
+      "address": "Bookshop, Bleecker St (fictional)"
+    }
+  ],
+  "current_location_id": "home",
+  "consent": {
+    "share_red_alerts_with_care_team": true,
+    "date": "2026-05-04"
+  },
+  "chart": {
+    "demographics": {
+      "dob": "1968-02-14 (synthetic)",
+      "mrn": "SYN-000101",
+      "address": "210 W 89th St, Apt 4C, New York, NY 10024 (fictional)",
+      "phone": "212-555-0101",
+      "language": "English, Spanish",
+      "emergency_contact": {
+        "name": "Luis Santos",
+        "relationship": "Brother",
+        "phone": "212-555-0111"
+      }
+    },
+    "healthcare_proxy": {
+      "name": "Luis Santos",
+      "relationship": "Brother",
+      "phone": "212-555-0111"
+    },
+    "pharmacy": {
+      "name": "Sugar Hill Pharmacy (fictional)",
+      "address": "1 Edgecombe Ave, New York, NY (fictional)",
+      "phone": "212-555-0121"
+    },
+    "visit_notes": [
+      {
+        "date": "2026-07-08",
+        "type": "Primary care — hypertension follow-up",
+        "provider": "Dr. A. Rivera",
+        "subjective": "Reports feeling light-headed twice last week when standing up quickly, both times during hot weather. Walks about 20 minutes to work each day. Drinks about 4 glasses of water daily. Denies chest pain, palpitations, shortness of breath, or fainting. Takes hydrochlorothiazide every morning as prescribed. Home blood pressure log shows readings around 124/78 in the mornings.",
+        "objective": "BP 118/74 sitting, 106/68 standing (no symptoms during exam). HR 84. Temp 98.4°F. Weight 68.2 kg (down 0.8 kg from May). Mucous membranes slightly dry. Heart regular, lungs clear. No leg swelling.",
+        "assessment": "1) Hypertension, well controlled — but mild orthostatic drop and weight loss suggest dehydration during hot weather while on a thiazide diuretic. 2) High cholesterol on statin, stable.",
+        "plan": "Basic metabolic panel today to check sodium, potassium and kidney function. Counseled on heat: increase fluids on hot days, stand up slowly, stay indoors during the hottest hours, and call if dizziness persists. Continue current doses for now — no medication change today. Home BP log to continue. Follow up in 4 weeks or sooner if symptoms worsen."
+      },
+      {
+        "date": "2026-05-04",
+        "type": "Primary care — annual visit",
+        "provider": "Dr. A. Rivera",
+        "subjective": "Annual visit. No complaints. Lives alone and has a window AC unit in the bedroom. Asked whether her blood pressure pills matter in hot weather.",
+        "objective": "BP 122/78, HR 76, Temp 98.2°F, Weight 69.0 kg. Exam normal.",
+        "assessment": "Hypertension and high cholesterol, both controlled.",
+        "plan": "Routine labs and lipid panel. Enrolled in the heat-alert program; consent to share red alerts with the care team discussed and signed. Gave a written heat plan."
+      },
+      {
+        "date": "2026-02-10",
+        "type": "Primary care — medication review",
+        "provider": "Dr. A. Rivera",
+        "subjective": "No side effects reported. Taking medicines regularly.",
+        "objective": "BP 126/80, HR 78.",
+        "assessment": "Hypertension, at goal.",
+        "plan": "Continue hydrochlorothiazide 25 mg and atorvastatin 20 mg. Repeat labs in 3 months."
+      }
+    ],
+    "after_visit_summaries": [
+      {
+        "date": "2026-07-08",
+        "summary": "Your blood pressure looks good, but hot weather plus your water pill can leave you low on fluid. Drink water regularly, stand up slowly, and stay somewhere cool in the afternoon. We checked your blood today and will call you with the results. Do not change your medicine on your own."
+      },
+      {
+        "date": "2026-05-04",
+        "summary": "Your annual check-up looked good. You joined the heat-alert program. If a red heat alert happens where you are, your care team will be told automatically. Keep taking your medicines as prescribed."
+      }
+    ],
+    "appointments": [
+      {
+        "date": "2026-10-06 10:30",
+        "provider": "Dr. A. Rivera (Primary care)",
+        "reason": "Blood pressure follow-up and lab review"
+      },
+      {
+        "date": "2026-11-12 14:00",
+        "provider": "S. Okafor, PharmD",
+        "reason": "Medication review (heat plan)"
+      }
+    ],
+    "other_conditions": [
+      "Seasonal allergies",
+      "History of right wrist fracture (2015)"
+    ],
+    "labs": [
+      {
+        "date": "2026-07-08",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 134,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": "L"
+          },
+          {
+            "name": "Potassium",
+            "value": 3.4,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": "L"
+          },
+          {
+            "name": "Creatinine",
+            "value": 1.08,
+            "unit": "mg/dL",
+            "ref_range": "0.50–1.10",
+            "flag": ""
+          },
+          {
+            "name": "eGFR",
+            "value": 59,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": "L"
+          }
+        ]
+      },
+      {
+        "date": "2026-05-04",
+        "panel": "Basic metabolic panel + lipids",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 139,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 4.0,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": ""
+          },
+          {
+            "name": "Creatinine",
+            "value": 0.94,
+            "unit": "mg/dL",
+            "ref_range": "0.50–1.10",
+            "flag": ""
+          },
+          {
+            "name": "eGFR",
+            "value": 70,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": ""
+          },
+          {
+            "name": "LDL cholesterol",
+            "value": 92,
+            "unit": "mg/dL",
+            "ref_range": "<100",
+            "flag": ""
+          }
+        ]
+      },
+      {
+        "date": "2026-02-10",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 140,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 4.2,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": ""
+          },
+          {
+            "name": "Creatinine",
+            "value": 0.91,
+            "unit": "mg/dL",
+            "ref_range": "0.50–1.10",
+            "flag": ""
+          },
+          {
+            "name": "eGFR",
+            "value": 73,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": ""
+          }
+        ]
+      },
+      {
+        "date": "2025-10-20",
+        "panel": "Basic metabolic panel",
+        "results": [
+          {
+            "name": "Sodium",
+            "value": 141,
+            "unit": "mmol/L",
+            "ref_range": "135–145",
+            "flag": ""
+          },
+          {
+            "name": "Potassium",
+            "value": 4.1,
+            "unit": "mmol/L",
+            "ref_range": "3.5–5.0",
+            "flag": ""
+          },
+          {
+            "name": "Creatinine",
+            "value": 0.89,
+            "unit": "mg/dL",
+            "ref_range": "0.50–1.10",
+            "flag": ""
+          },
+          {
+            "name": "eGFR",
+            "value": 75,
+            "unit": "mL/min/1.73m²",
+            "ref_range": "≥60",
+            "flag": ""
+          }
+        ]
+      }
+    ],
+    "imaging": [
+      {
+        "date": "2025-11-03",
+        "modality": "Ultrasound",
+        "body_part": "Kidneys",
+        "report": "SYNTHETIC REPORT. Both kidneys normal in size with normal cortical thickness. No hydronephrosis or stones. Impression: normal renal ultrasound.",
+        "image_file": "data/placeholders/scan_ultrasound.svg"
+      },
+      {
+        "date": "2024-09-18",
+        "modality": "X-ray",
+        "body_part": "Chest (2 views)",
+        "report": "SYNTHETIC REPORT. Lungs are clear. Heart size is normal. No acute findings.",
+        "image_file": "data/placeholders/scan_xray.svg"
+      }
+    ]
+  },
+  "doctor_note": {
+    "date": "2026-07-19",
+    "from": "Dr. A. Rivera",
+    "text": "Hot week ahead. Your water pill can leave you low on fluid, so drink regularly and stand up slowly. Call us if the dizziness comes back."
+  }
+}
