@@ -1,106 +1,138 @@
 # Hypertension in Heat
 
-An explainable prototype for prioritizing preventive heat outreach to adults
-with hypertension. It combines patient vulnerability with the official National
-Weather Service (NWS) HeatRisk forecast and returns one of three
-outreach levels: **routine**, **targeted**, or **priority**.
+Hypertension in Heat is an explainable hackathon project for preventive heat
+outreach to adults with hypertension. The repository now contains two related
+artifacts:
+
+1. **HeatSafe NYC**, a static click-through website that demonstrates
+   neighborhood, patient, and care-team workflows with synthetic patient data.
+2. **The v0.3 assessment notebook**, a Python reference implementation that
+   combines patient vulnerability with official NWS HeatRisk.
 
 > [!WARNING]
-> This project is a non-validated decision-support prototype. It does not
-> diagnose heat illness, estimate an individual's probability of harm, or
-> provide medication or fluid-management advice. Do not stop or change
-> medications or prescribed fluid limits based on its output. Emergency or new
-> heat-related symptoms require clinical assessment independent of the score.
+> This project is a non-validated prototype, not a medical device. It does not
+> diagnose or rule out heat illness, estimate an individual's probability of
+> harm, or recommend medication or prescribed-fluid changes. Urgent or new
+> symptoms require clinical assessment independently of any score shown here.
 
-## How it works
+## Start the HeatSafe NYC demo
 
-The v0.3 model keeps two concepts separate:
+The website has no package installation or build step. From the repository
+root, run:
 
-- **Patient vulnerability (`V`, 0–8):** the sum of four scored domains.
-- **NWS HeatRisk (`H`, 0–4):** the forecast category for a ZIP code and local
-  date.
+```bash
+cd "Hackathon 2026 - VScode"
+python3 -m http.server 8000
+```
 
-`H` and `V` are never added together. The model uses them as separate inputs to
-an outreach-priority matrix.
+Then open [http://localhost:8000/site/](http://localhost:8000/site/).
 
-| Scored domain | Range | Summary |
-| --- | ---: | --- |
-| Clinical susceptibility | 0–2 | Age 65+, heart failure, chronic kidney disease, diabetes, and previous heat illness; capped at 2 |
-| Medication considerations | 0–2 | Heat-relevant medication classes, with the maximum assigned to a diuretic plus an ACE inhibitor, ARB, or ARNI |
-| Cooling access | 0–2 | Reliable home cooling or a confirmed, usable alternative cooling location |
-| Support and assistance | 0–2 | Reliable check-ins and help carrying out the heat-safety plan |
+For a quick offline preview, double-click
+`Hackathon 2026 - VScode/index.html`. The site falls back to its generated data
+bundle when opened directly from the filesystem.
 
-Expected heat exposure, cooling breaks, and strenuous activity are optional
-action-personalization fields. They do not affect the score, assessment status,
-or outreach priority.
+The full walkthrough, demo accounts, and editing guide are in the
+[HeatSafe NYC README](<Hackathon 2026 - VScode/README.md>).
 
-### Outreach matrix
+## What the web demo includes
 
-| NWS HeatRisk | V 0–2 | V 3–5 | V 6–8 |
-| --- | --- | --- | --- |
-| 0 — Little to none | Routine | Routine | Routine |
-| 1 — Minor | Routine | Targeted | Targeted |
-| 2 — Moderate | Targeted | Targeted | Priority |
-| 3 — Major | Targeted | Priority | Priority |
-| 4 — Extreme | Priority | Priority | Priority |
+- A public NYC neighborhood heat-risk map.
+- Three synthetic patient personas with hypertension and different medicines,
+  conditions, cooling access, and support needs.
+- Personalized patient risk, medication information, a cached seven-day
+  forecast, nearby example cool spaces, and a care-team ticket flow.
+- A care-team dashboard with red-risk alerts, patient charts, medication flags,
+  notes, and privacy-preserving neighborhood counts.
+- Methods, evidence, and ethics pages that expose the rules and limitations.
+- In-memory and `sessionStorage` demo state; no backend, real authentication,
+  analytics, cookies, or real patient records.
 
-The weights, score bands, and matrix cells are provisional project policy, not
-a clinically validated risk model.
+Use **Demo controls → Heat episode B — severe** to show low, medium, and high
+patient-risk states during a walkthrough.
 
-## Features
+## Two complementary implementations
 
-- Retrieves NWS HeatRisk for a five-digit U.S. ZIP code.
-- Validates the forecast location, issue time, valid period, value, and freshness.
-- Recognizes a deliberately limited set of common generic hypertension
-  medications from the CDC's heat-and-medications guidance.
-- Preserves unknown patient data as score ranges instead of treating it as
-  negative.
-- Reports when missing information could change the outreach decision.
-- Routes reported emergency or other new symptoms before preventive scoring.
-- Supports offline or synthetic HeatRisk values for development and testing.
-- Returns structured, auditable results with reason codes, action IDs, source
-  references, and validation errors.
+The website and notebook illustrate different stages of the project. They do
+not currently share one scoring engine.
 
-## Repository contents
+| | HeatSafe NYC web demo | v0.3 notebook |
+| --- | --- | --- |
+| Primary purpose | Demonstrate patient and care-team workflows | Demonstrate an uncertainty-aware outreach rule |
+| Environmental input | Episode temperature plus neighborhood HVI and chronic-disease burden | Official NWS HeatRisk `H = 0–4` for a ZIP code and local date |
+| Patient logic | Adds personal medication and vulnerability points to a neighborhood score | Calculates four patient domains totaling `V = 0–8` |
+| Output | Low, medium, or high personal risk with yellow/red workflow behavior | Routine, targeted, or priority outreach |
+| Main rules | `Hackathon 2026 - VScode/site/js/scoring.js` | `heat_outreach_model_definition_v0_3.json` |
+| Runtime | Static HTML, CSS, and JavaScript | Python/Jupyter |
 
-| Path | Purpose |
+The website's `heat_outreach_model_definition.json` is a v0.1 specification
+artifact. The live demo's current risk colors are determined by the `CONFIG`
+object in `site/js/scoring.js`.
+
+## Current data status
+
+| Data | Status |
 | --- | --- |
-| `heat_outreach_risk_assessment.ipynb` | Model implementation, medication mapping, NWS lookup, and worked example |
-| `heat_outreach_model_definition_v0_3.json` | Required scoring rules, messages, actions, and source metadata |
+| NYC 2020 Neighborhood Tabulation Area boundaries | Loaded and simplified from NYC Open Data |
+| Seven-day Central Park forecast | Real NWS high/low temperature forecast cached at build time |
+| Medication rules | 17 classes loaded from the team spreadsheet; all remain unreviewed |
+| Patient records | Fully synthetic |
+| NYC Heat Vulnerability Index | Placeholder neighborhood values |
+| CDC PLACES chronic-disease burden | Placeholder neighborhood values |
+| Historical heat episodes | Placeholder replay scenarios |
+| Cool spaces | Example map locations, not verified cooling centers |
+| Heat-illness validation data | Not yet loaded |
+| Official HeatRisk in the website | Not yet integrated; the cached website forecast contains temperatures only |
 
-## Requirements
+See [data/SOURCES.md](<Hackathon 2026 - VScode/data/SOURCES.md>) for the
+source-by-source status and caveats. Placeholder values are for interface
+demonstration only and must not be presented as measured neighborhood risk.
 
-- Python 3.11 or newer
-- JupyterLab or Jupyter Notebook
-- Internet access for live NWS lookups
+## Refresh or rebuild website data
 
-The prototype implementation otherwise uses only the Python standard library.
+Run these commands from `Hackathon 2026 - VScode/`.
 
-## Quick start
+Refresh the cached NWS forecast and rebuild the offline bundle:
 
-1. Clone the repository and enter the project directory.
-2. Start Jupyter:
+```bash
+python3 scripts/fetch_forecast.py
+python3 scripts/bundle_data.py
+```
 
-   ```bash
-   jupyter lab heat_outreach_risk_assessment.ipynb
-   ```
+Recreate the simplified map and placeholder neighborhood metrics, then rebuild
+the bundle:
 
-3. Run the notebook from top to bottom, edit the example patient record, and
-   call the main entry point:
+```bash
+python3 scripts/prep_data.py
+python3 scripts/bundle_data.py
+```
 
-   ```python
-   assessment = assess_patient_for_zip(
-       patient=patient,
-       zip_code="72301",
-       forecast_date=None,  # today at the ZIP code
-   )
-   show_assessment(assessment)
-   ```
+The scripts use the Python standard library. Refreshing the forecast requires
+internet access; the website itself runs offline from committed files.
 
-ZIP codes with leading zeroes must be strings, for example `"02108"`. The
+## Run the v0.3 notebook
+
+The notebook requires Python 3.11 or newer, JupyterLab or Jupyter Notebook, and
+internet access for live NWS lookups.
+
+```bash
+jupyter lab heat_outreach_risk_assessment.ipynb
+```
+
+Run the cells from top to bottom and call:
+
+```python
+assessment = assess_patient_for_zip(
+    patient=patient,
+    zip_code="72301",
+    forecast_date=None,  # today at the ZIP code
+)
+show_assessment(assessment)
+```
+
+ZIP codes with leading zeroes must be strings, such as `"02108"`. The
 patient's `location_id` must match the requested ZIP in `ZIP:12345` format.
 
-For offline development or a synthetic forecast, bypass the network helper:
+For offline development or a synthetic forecast:
 
 ```python
 assessment = assess_heat_outreach(
@@ -110,125 +142,65 @@ assessment = assess_heat_outreach(
 )
 ```
 
-## Patient data
+### Notebook scoring model
 
-The scorer is scoped to adults with confirmed hypertension. A patient record
-uses a non-empty pseudonymous `patient_id`, an integer `age`, and `True`,
-`False`, or `None` for clinical and social fields. Missing keys and `None` stay
-unknown.
+The notebook keeps patient vulnerability and environmental risk separate:
 
-Medication names can be normalized into model fields before assessment:
+- **Patient vulnerability (`V`, 0–8):** clinical susceptibility, medication
+  considerations, cooling access, and support/assistance, each scored `0–2`.
+- **NWS HeatRisk (`H`, 0–4):** the official forecast category for the ZIP code
+  and local date.
 
-```python
-patient, medication_check = apply_hypertension_medications(
-    patient,
-    [
-        "lisinopril 10 MG Oral Tablet",
-        "hydrochlorothiazide 25 MG Oral Tablet",
-    ],
-    medication_list_complete=True,
-)
-```
+`H` and `V` are never added together. An explicit matrix maps them to routine,
+targeted, or priority outreach. Expected heat exposure, cooling breaks, and
+strenuous activity may personalize actions but do not change the notebook's
+score or priority.
 
-Set `medication_list_complete=True` only when the supplied active medication
-list is complete. Unrecognized medication entries leave the review incomplete;
-they are not assumed to be safe or irrelevant.
+Missing scored inputs remain unknown. The notebook calculates the minimum and
+maximum possible score and checks every priority in that range:
 
-## Missing data and failure behavior
+- A stable priority is returned with `partial` status.
+- A range that crosses priority levels returns `needs_information` and lists
+  the possible priorities.
+- An unusable forecast returns `forecast_unavailable`; it is never replaced
+  with HeatRisk 0.
 
-For unknown scored inputs, the model calculates minimum and maximum domain
-scores and evaluates every possible score in that range:
+## Repository map
 
-- If every completion produces the same priority, the assessment returns that
-  priority with `partial` status.
-- If the priority could change, it returns `needs_information` and lists the
-  possible priorities.
-- If the NWS forecast cannot be verified, it returns `forecast_unavailable` and
-  never substitutes HeatRisk 0.
-- Invalid inputs return `invalid_input`; patients outside the model's scope
-  return `out_of_scope`.
+| Path | Purpose |
+| --- | --- |
+| [`Hackathon 2026 - VScode/`](<Hackathon 2026 - VScode/>) | HeatSafe NYC demo and supporting assets |
+| [`site/`](<Hackathon 2026 - VScode/site/>) | Static HTML, CSS, JavaScript, maps, and vendored Leaflet assets |
+| [`data/processed/`](<Hackathon 2026 - VScode/data/processed/>) | Website-ready map, forecast, medication, patient, and content data |
+| [`scripts/`](<Hackathon 2026 - VScode/scripts/>) | Data preparation, forecast refresh, bundling, and slide-generation scripts |
+| [`Drug-Heat Risk Table.xlsx`](<Hackathon 2026 - VScode/Drug-Heat Risk Table.xlsx>) | Team medication-risk knowledge base |
+| [`tests/scoring.test.md`](<Hackathon 2026 - VScode/tests/scoring.test.md>) | Manual scoring and workflow test cases |
+| [`PLAN.md`](<Hackathon 2026 - VScode/PLAN.md>) | Product scope, architecture, and backlog |
+| [`DECISIONS.md`](<Hackathon 2026 - VScode/DECISIONS.md>) | Provisional product and scoring decisions |
+| [`heat_scoring_visual_guide.pdf`](<Hackathon 2026 - VScode/heat_scoring_visual_guide.pdf>) | Visual scoring guide |
+| [`docs/`](<Hackathon 2026 - VScode/docs/>) | Service blueprint and journey/system presentation pages |
+| [`Demostration/`](<Hackathon 2026 - VScode/Demostration/>) | Exported journey and service-system maps |
+| [`Styles/`](<Hackathon 2026 - VScode/Styles/>) | Visual references used during design |
+| `backup-before-restyle/`, `backup-before-style2/` | Reversible snapshots of earlier website styles |
+| [`heat_outreach_risk_assessment.ipynb`](heat_outreach_risk_assessment.ipynb) | v0.3 Python assessment, medication mapper, NWS lookup, and example |
+| [`heat_outreach_model_definition_v0_3.json`](heat_outreach_model_definition_v0_3.json) | Executable notebook rules, actions, messages, and source registry |
 
-## Privacy and data handling
+## Privacy, evidence, and limitations
 
-The live lookup sends only the ZIP code to the NWS service. Do not send patient
-identifiers, clinical details, or medication information to NWS. Avoid placing
-direct identifiers in the notebook; use a pseudonymous patient ID and follow
-the data-handling requirements of the environment in which the prototype runs.
+- All website patients, charts, addresses, phone numbers, alerts, and clinical
+  notes are synthetic.
+- The website is a static demonstration. Its account switcher is not real
+  authentication, and its alert workflow does not contact a healthcare system.
+- The notebook sends only a ZIP code to the NWS forecast service; patient and
+  medication information remain local.
+- The scoring weights, thresholds, bands, and escalation rules are provisional
+  design choices and have not been clinically validated or calibrated.
+- Medication mappings require pharmacist or physician review before any
+  clinical use.
+- A real pilot would require validated data, automated tests, prospective and
+  equity evaluation, governance, security review, and defined escalation and
+  monitoring procedures.
 
-## Data sources
-
-- [NWS National Digital Forecast Database XML service](https://digital.weather.gov/xml/rest.php)
-- [CDC Heat and Medications guidance for clinicians](https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-medications-guidance-for-clinicians.html)
-
-Consult the current NWS documentation before deployment. The medication mapping
-is intentionally non-exhaustive and should be pharmacist-reviewed before any
-clinical deployment.
-
-## How we built it
-
-We built the prototype as a Python notebook backed by a versioned JSON model
-definition. The JSON keeps the scoring policy, priority matrix, actions,
-messages, and evidence references separate from the implementation so every
-decision can be inspected and revised.
-
-The pipeline calculates a patient vulnerability score from clinical
-susceptibility, medication considerations, cooling access, and available
-support. It then retrieves the NWS HeatRisk forecast for the patient's ZIP code
-and combines the two values through an explicit priority matrix. A small
-medication-normalization layer maps common generic hypertension medicines to
-the model's heat-relevant classes. The final result includes the score or score
-range, outreach priority, reason codes, suggested actions, missing fields, and
-forecast provenance.
-
-## Challenges we ran into
-
-The hardest challenge was translating broad public-health guidance into rules
-without making the prototype look more clinically certain than it is. We kept
-HeatRisk and patient vulnerability separate, documented the provisional
-weights, and added clear boundaries around diagnosis and medication advice.
-
-Missing data also required careful handling. Treating an unanswered question
-as “no” could systematically understate risk, so the model calculates minimum
-and maximum possible scores and reports when uncertainty could change the
-outreach decision. We also had to handle stale or malformed forecasts, ZIP-code
-and location mismatches, incomplete medication lists, and urgent symptoms that
-must be surfaced before any network request or preventive score.
-
-## Accomplishments that we're proud of
-
-- Built an explainable, end-to-end path from patient and ZIP-code inputs to an
-  auditable outreach recommendation.
-- Made uncertainty a first-class output instead of silently filling missing
-  clinical or social data.
-- Added both live NWS lookup and offline assessment modes without treating an
-  unavailable forecast as low risk.
-- Limited the live request to a ZIP code, keeping patient and medication data
-  out of the weather service call.
-- Created a human-readable, versioned model definition that reproduces the
-  notebook's scoring, symptom-routing, and action behavior.
-
-## What we learned
-
-Heat outreach is not only a medical-risk problem. Access to cooling,
-transportation, check-in support, and help carrying out a safety plan can shape
-whether prevention advice is actionable. We also learned that provenance and
-failure behavior matter as much as the score: a recommendation should show
-which rule version and forecast produced it, what remains unknown, and when it
-should not be used.
-
-Most importantly, explainability does not equal validation. Transparent rules
-make review and testing easier, but clinical usefulness, fairness, calibration,
-and real-world benefit still need to be demonstrated.
-
-## What's next for Hypertension in Heat
-
-Next steps are to review the policy with clinicians, pharmacists, public-health
-teams, and community health workers; test it on representative de-identified
-and historical scenarios; and evaluate performance and equity across patient
-groups and locations. We also plan to extract the notebook into a tested Python
-package, add automated schema and regression tests, expand forecast and
-medication coverage carefully, and build a simple workflow for outreach teams.
-
-Any clinical pilot would require governance, privacy and security review,
-prospective validation, clear escalation procedures, and monitoring for both
-missed risk and unnecessary outreach.
+Primary external references include the
+[NWS National Digital Forecast Database](https://digital.weather.gov/xml/rest.php)
+and [CDC Heat and Medications guidance](https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-medications-guidance-for-clinicians.html).
