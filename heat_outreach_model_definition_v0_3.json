@@ -1,0 +1,426 @@
+{
+  "model_id": "hypertension_heat_outreach",
+  "version": "0.3.0",
+  "title": "Medical and Social Heat Outreach Assessment",
+  "status": "prototype_not_clinically_validated",
+  "effective_date": "2026-09-20",
+  "intended_use": "Prioritize preventive heat outreach for adults with confirmed hypertension by combining a patient vulnerability score with the official NWS HeatRisk category.",
+  "not_intended_for": [
+    "diagnosing or ruling out heat-related illness",
+    "estimating an individual's probability of harm",
+    "recommending medication changes",
+    "recommending changes to prescribed fluid limits",
+    "replacing clinical judgment or emergency evaluation"
+  ],
+  "scope": {
+    "minimum_age": 18,
+    "requires_confirmed_hypertension": true,
+    "geography": "United States ZIP codes supported by the NWS NDFD service",
+    "patient_identifier_policy": "Use a non-empty pseudonymous identifier; do not send patient information to the forecast service."
+  },
+  "scoring": {
+    "score_name": "outreach_vulnerability",
+    "score_symbol": "V",
+    "minimum": 0,
+    "maximum": 8,
+    "unknown_value_policy": "Calculate minimum and maximum possible domain scores; never interpret unknown as no.",
+    "domains": [
+      {
+        "id": "clinical",
+        "label": "Clinical susceptibility",
+        "minimum": 0,
+        "maximum": 2,
+        "rule": "Add one point for each present factor, then cap the domain at 2.",
+        "factors": [
+          {
+            "field": "age",
+            "condition": "greater_than_or_equal_to_65",
+            "points": 1
+          },
+          {
+            "field": "has_heart_failure",
+            "condition": true,
+            "points": 1
+          },
+          {
+            "field": "has_chronic_kidney_disease",
+            "condition": true,
+            "points": 1
+          },
+          {
+            "field": "has_diabetes",
+            "condition": true,
+            "points": 1
+          },
+          {
+            "field": "history_of_heat_illness",
+            "condition": true,
+            "points": 1
+          }
+        ],
+        "source_refs": [
+          "E01",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "medication",
+        "label": "Medication considerations",
+        "minimum": 0,
+        "maximum": 2,
+        "heat_relevant_classes": [
+          "DIURETIC",
+          "ACEI",
+          "ARB",
+          "ARNI",
+          "BETA_BLOCKER",
+          "CALCIUM_CHANNEL_BLOCKER",
+          "NITRATE"
+        ],
+        "rules": [
+          {
+            "score": 0,
+            "condition": "Medication review is complete and no mapped heat-relevant class is present."
+          },
+          {
+            "score": 1,
+            "condition": "At least one mapped heat-relevant class is present."
+          },
+          {
+            "score": 2,
+            "condition": "A DIURETIC is present with an ACEI, ARB, or ARNI."
+          }
+        ],
+        "incomplete_review_policy": "When the medication list is missing, incomplete, or contains an unmapped entry, retain the highest score still possible.",
+        "source_refs": [
+          "E05"
+        ]
+      },
+      {
+        "id": "cooling",
+        "label": "Cooling access",
+        "minimum": 0,
+        "maximum": 2,
+        "rules": [
+          {
+            "score": 0,
+            "condition": "Reliable home cooling is available."
+          },
+          {
+            "score": 1,
+            "condition": "Reliable home cooling is unavailable, but a confirmed usable alternative cooling location is available."
+          },
+          {
+            "score": 2,
+            "condition": "Neither reliable home cooling nor a confirmed usable alternative cooling location is available."
+          }
+        ],
+        "usable_alternative_definition": "Opening hours, transportation, affordability, and accessibility are workable for the patient.",
+        "source_refs": [
+          "E01",
+          "E06"
+        ]
+      },
+      {
+        "id": "support",
+        "label": "Support and assistance",
+        "minimum": 0,
+        "maximum": 2,
+        "rule": "Add one point for each present factor.",
+        "factors": [
+          {
+            "field": "has_reliable_checkin_support",
+            "condition": false,
+            "points": 1
+          },
+          {
+            "field": "needs_assistance_for_heat_protection",
+            "condition": true,
+            "points": 1
+          }
+        ],
+        "living_alone_policy": "Living alone is not scored by itself; assess actual check-in support and assistance needs.",
+        "source_refs": [
+          "E01",
+          "E06"
+        ]
+      }
+    ],
+    "unscored_fields": [
+      {
+        "field": "expected_heat_exposure",
+        "allowed_use": "action_personalization_only"
+      },
+      {
+        "field": "has_reliable_cooling_breaks",
+        "allowed_use": "action_personalization_only"
+      },
+      {
+        "field": "has_strenuous_heat_exposure",
+        "allowed_use": "action_personalization_only"
+      }
+    ],
+    "bands": [
+      {
+        "id": "low",
+        "label": "V 0-2",
+        "min": 0,
+        "max": 2
+      },
+      {
+        "id": "moderate",
+        "label": "V 3-5",
+        "min": 3,
+        "max": 5
+      },
+      {
+        "id": "high",
+        "label": "V 6-8",
+        "min": 6,
+        "max": 8
+      }
+    ],
+    "matrix_column_order": [
+      "low",
+      "moderate",
+      "high"
+    ],
+    "priority_matrix": {
+      "0": [
+        "routine",
+        "routine",
+        "routine"
+      ],
+      "1": [
+        "routine",
+        "targeted",
+        "targeted"
+      ],
+      "2": [
+        "targeted",
+        "targeted",
+        "priority"
+      ],
+      "3": [
+        "targeted",
+        "priority",
+        "priority"
+      ],
+      "4": [
+        "priority",
+        "priority",
+        "priority"
+      ]
+    },
+    "combination_policy": "Keep NWS HeatRisk H separate from patient vulnerability V; never add H and V together."
+  },
+  "symptom_policy": {
+    "normalization": "Trim, lowercase, replace non-alphanumeric runs with underscores, collapse repeated underscores, and remove leading or trailing underscores.",
+    "emergency_signals": [
+      "confusion",
+      "altered_mental_status",
+      "slurred_speech",
+      "seizure",
+      "seizures",
+      "loss_of_consciousness",
+      "unconscious",
+      "unconsciousness"
+    ],
+    "other_new_symptoms": [
+      "headache",
+      "nausea",
+      "vomiting",
+      "dizziness",
+      "weakness",
+      "heavy_sweating",
+      "cold_pale_clammy_skin",
+      "fast_weak_pulse",
+      "muscle_cramps",
+      "fainting"
+    ],
+    "unrecognized_nonempty_policy": "Route any reported, non-empty symptom that is not in a configured list to prompt clinical review.",
+    "not_assessed_policy": "State that symptoms were not assessed and that the preventive assessment does not rule out heat illness.",
+    "source_refs": [
+      "E08"
+    ]
+  },
+  "actions": {
+    "routine": [
+      "MAINTAIN_HEAT_PLAN"
+    ],
+    "targeted": [
+      "CONFIRM_COOLING_PLAN",
+      "REDUCE_HEAT_EXPOSURE",
+      "ARRANGE_CHECKIN",
+      "REVIEW_EXISTING_HEAT_PLAN"
+    ],
+    "priority": [
+      "CONFIRM_COOLING_PLAN",
+      "REDUCE_HEAT_EXPOSURE",
+      "ARRANGE_CHECKIN",
+      "REVIEW_EXISTING_HEAT_PLAN",
+      "CARE_TEAM_REVIEW"
+    ]
+  },
+  "action_catalog": {
+    "MAINTAIN_HEAT_PLAN": {
+      "label": "Maintain heat plan",
+      "description": "Keep the existing prevention plan ready and monitor verified forecasts."
+    },
+    "CONFIRM_COOLING_PLAN": {
+      "label": "Confirm cooling plan",
+      "description": "Confirm reliable home cooling or a usable alternative location, including hours, transportation, affordability, and accessibility."
+    },
+    "REDUCE_HEAT_EXPOSURE": {
+      "label": "Reduce heat exposure",
+      "description": "Review practical ways to reduce heat exposure and strenuous activity and to use cooling breaks."
+    },
+    "ARRANGE_CHECKIN": {
+      "label": "Arrange check-in",
+      "description": "Arrange reliable check-ins and any assistance needed to carry out the heat-safety plan."
+    },
+    "REVIEW_EXISTING_HEAT_PLAN": {
+      "label": "Review existing heat plan",
+      "description": "Review the patient's existing heat plan, symptom instructions, medication safety message, and prescribed fluid limits."
+    },
+    "CARE_TEAM_REVIEW": {
+      "label": "Care-team review",
+      "description": "Flag the assessment for care-team review before the forecast heat period; this is not an emergency diagnosis."
+    }
+  },
+  "action_personalization": {
+    "remove_CONFIRM_COOLING_PLAN_when": "has_reliable_home_cooling is true",
+    "remove_REDUCE_HEAT_EXPOSURE_when": "expected_heat_exposure is false and has_strenuous_heat_exposure is false",
+    "remove_ARRANGE_CHECKIN_when": "has_reliable_checkin_support is true and needs_assistance_for_heat_protection is false",
+    "priority_invariance": "Personalization may remove inapplicable actions only after priority is selected; it cannot change the score, score range, status, or priority."
+  },
+  "messages": {
+    "routine": "Routine outreach: maintain the existing heat plan.",
+    "targeted": "Targeted outreach: provide personalized prevention and support checks.",
+    "priority": "Priority outreach: flag for care-team review before the forecast heat period. This is not an emergency diagnosis.",
+    "forecast_unavailable": "Official HeatRisk is unavailable. Keep the heat plan ready and reassess when a verified forecast is available.",
+    "needs_information": "More information is needed because the score range changes outreach priority.",
+    "emergency": "Call 911 now (US). Move to a cooler place and begin cooling while help arrives. Do not give fluids to an unconscious person.",
+    "symptom_review": "Move to a cooler place and contact a clinician or urgent care for prompt assessment. Seek prompt care for vomiting or worsening symptoms. Call 911 for confusion, seizure, or loss of consciousness.",
+    "safety": "Do not change medications or prescribed fluid limits based on this tool."
+  },
+  "forecast_policy": {
+    "source": "NWS National Digital Forecast Database XML service",
+    "element": "heatrisk",
+    "accepted_levels": {
+      "0": "Little to none",
+      "1": "Minor",
+      "2": "Moderate",
+      "3": "Major",
+      "4": "Extreme"
+    },
+    "default_max_age_minutes": 180,
+    "unavailable_value": null,
+    "failure_policy": "Return forecast_unavailable; never substitute HeatRisk 0 for a missing, stale, malformed, mismatched, or out-of-range forecast.",
+    "source_refs": [
+      "E07",
+      "E10"
+    ]
+  },
+  "sources": [
+    {
+      "id": "E01",
+      "organization": "Centers for Disease Control and Prevention",
+      "title": "About Heat and Your Health",
+      "url": "https://www.cdc.gov/heat-health/about/index.html",
+      "supports": [
+        "heat can worsen chronic health conditions",
+        "staying cool",
+        "using air conditioning or another cooled location",
+        "checking on people with chronic conditions or who live alone"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E03",
+      "organization": "Centers for Disease Control and Prevention",
+      "title": "Heat and Older Adults (Aged 65+)",
+      "url": "https://www.cdc.gov/heat-health/risk-factors/heat-and-older-adults-aged-65.html",
+      "supports": [
+        "age 65 or older as a heat-health susceptibility factor",
+        "cooling access and reciprocal check-ins"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E04",
+      "organization": "Centers for Disease Control and Prevention",
+      "title": "Heat and Chronic Conditions",
+      "url": "https://www.cdc.gov/heat-health/risk-factors/heat-and-chronic-conditions.html",
+      "supports": [
+        "chronic medical conditions as heat-health susceptibility factors",
+        "medications can worsen the effects of heat"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E05",
+      "organization": "Centers for Disease Control and Prevention",
+      "title": "Heat and Medications - Guidance for Clinicians",
+      "url": "https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-medications-guidance-for-clinicians.html",
+      "supports": [
+        "heat-relevant cardiovascular medication classes",
+        "potential additive risk from combinations of heat-relevant medicines",
+        "individualized medication plans and avoiding abrupt medication changes"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E06",
+      "organization": "Centers for Disease Control and Prevention",
+      "title": "Heat and Chronic Conditions",
+      "url": "https://www.cdc.gov/heat-health/risk-factors/heat-and-chronic-conditions.html",
+      "supports": [
+        "assessing access to air conditioning",
+        "knowing how to keep cool",
+        "arranging reciprocal check-ins"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E07",
+      "organization": "National Weather Service, Weather Prediction Center",
+      "title": "NWS HeatRisk",
+      "url": "https://www.wpc.ncep.noaa.gov/heatrisk/",
+      "supports": [
+        "five color-numeric HeatRisk categories",
+        "HeatRisk as guidance for decision makers and people sensitive to heat"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E08",
+      "organization": "National Weather Service",
+      "title": "Heat Cramps, Exhaustion, Stroke",
+      "url": "https://www.weather.gov/safety/heat-illness",
+      "supports": [
+        "heat illness symptom routing",
+        "calling 911 for heat stroke signs",
+        "moving to a cooler place and beginning cooling"
+      ],
+      "accessed_on": "2026-09-20"
+    },
+    {
+      "id": "E10",
+      "organization": "National Weather Service",
+      "title": "National Digital Forecast Database XML REST Web Service",
+      "url": "https://digital.weather.gov/xml/rest.php",
+      "supports": [
+        "ZIP-code forecast lookup",
+        "NDFD XML request and response interface"
+      ],
+      "accessed_on": "2026-09-20"
+    }
+  ],
+  "governance": {
+    "weights_and_thresholds": "Provisional project policy; not derived or validated as an individual clinical risk prediction model.",
+    "medication_mapping": "Deliberately non-exhaustive and requires pharmacist review before clinical deployment.",
+    "review_required_before_deployment": true
+  }
+}

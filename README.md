@@ -68,10 +68,6 @@ a clinically validated risk model.
 | `heat_outreach_risk_assessment.ipynb` | Model implementation, medication mapping, NWS lookup, and worked example |
 | `heat_outreach_model_definition_v0_3.json` | Required scoring rules, messages, actions, and source metadata |
 
-The notebook expects `heat_outreach_model_definition_v0_3.json` in the project
-root. That file is not currently included in this repository, so the notebook
-cannot run from a fresh clone until the v0.3 model definition is added.
-
 ## Requirements
 
 - Python 3.11 or newer
@@ -83,14 +79,13 @@ The prototype implementation otherwise uses only the Python standard library.
 ## Quick start
 
 1. Clone the repository and enter the project directory.
-2. Add `heat_outreach_model_definition_v0_3.json` to the project root.
-3. Start Jupyter:
+2. Start Jupyter:
 
    ```bash
    jupyter lab heat_outreach_risk_assessment.ipynb
    ```
 
-4. Run the notebook from top to bottom, edit the example patient record, and
+3. Run the notebook from top to bottom, edit the example patient record, and
    call the main entry point:
 
    ```python
@@ -168,3 +163,72 @@ the data-handling requirements of the environment in which the prototype runs.
 Consult the current NWS documentation before deployment. The medication mapping
 is intentionally non-exhaustive and should be pharmacist-reviewed before any
 clinical deployment.
+
+## How we built it
+
+We built the prototype as a Python notebook backed by a versioned JSON model
+definition. The JSON keeps the scoring policy, priority matrix, actions,
+messages, and evidence references separate from the implementation so every
+decision can be inspected and revised.
+
+The pipeline calculates a patient vulnerability score from clinical
+susceptibility, medication considerations, cooling access, and available
+support. It then retrieves the NWS HeatRisk forecast for the patient's ZIP code
+and combines the two values through an explicit priority matrix. A small
+medication-normalization layer maps common generic hypertension medicines to
+the model's heat-relevant classes. The final result includes the score or score
+range, outreach priority, reason codes, suggested actions, missing fields, and
+forecast provenance.
+
+## Challenges we ran into
+
+The hardest challenge was translating broad public-health guidance into rules
+without making the prototype look more clinically certain than it is. We kept
+HeatRisk and patient vulnerability separate, documented the provisional
+weights, and added clear boundaries around diagnosis and medication advice.
+
+Missing data also required careful handling. Treating an unanswered question
+as “no” could systematically understate risk, so the model calculates minimum
+and maximum possible scores and reports when uncertainty could change the
+outreach decision. We also had to handle stale or malformed forecasts, ZIP-code
+and location mismatches, incomplete medication lists, and urgent symptoms that
+must be surfaced before any network request or preventive score.
+
+## Accomplishments that we're proud of
+
+- Built an explainable, end-to-end path from patient and ZIP-code inputs to an
+  auditable outreach recommendation.
+- Made uncertainty a first-class output instead of silently filling missing
+  clinical or social data.
+- Added both live NWS lookup and offline assessment modes without treating an
+  unavailable forecast as low risk.
+- Limited the live request to a ZIP code, keeping patient and medication data
+  out of the weather service call.
+- Created a human-readable, versioned model definition that reproduces the
+  notebook's scoring, symptom-routing, and action behavior.
+
+## What we learned
+
+Heat outreach is not only a medical-risk problem. Access to cooling,
+transportation, check-in support, and help carrying out a safety plan can shape
+whether prevention advice is actionable. We also learned that provenance and
+failure behavior matter as much as the score: a recommendation should show
+which rule version and forecast produced it, what remains unknown, and when it
+should not be used.
+
+Most importantly, explainability does not equal validation. Transparent rules
+make review and testing easier, but clinical usefulness, fairness, calibration,
+and real-world benefit still need to be demonstrated.
+
+## What's next for Hypertension in Heat
+
+Next steps are to review the policy with clinicians, pharmacists, public-health
+teams, and community health workers; test it on representative de-identified
+and historical scenarios; and evaluate performance and equity across patient
+groups and locations. We also plan to extract the notebook into a tested Python
+package, add automated schema and regression tests, expand forecast and
+medication coverage carefully, and build a simple workflow for outreach teams.
+
+Any clinical pilot would require governance, privacy and security review,
+prospective validation, clear escalation procedures, and monitoring for both
+missed risk and unnecessary outreach.
